@@ -1,0 +1,203 @@
+// Buttons
+//
+// There are 4 types of buttons available in all colors combinations defined in `$buttons` map of `config.scss` for each brand:
+//
+// ||
+// |-|
+// | `.cta-triangle-[color]` |
+// | `.cta-box-[color]` |
+// | `.cta-outline-[color]` |
+// | `.cta-box-outline-[color]` |
+//
+// *NOTE: To support ADA compliance the framework includes an `outline.scss` module that calculates a contrasted outline color of focusable elements (`<a>` or `<button>` elements) based on the occurence of keyboard focusable elements contained in a parent utilizing a .bg-[color] utility class. See docs example in Colors section below for more info.*
+//
+// Markup:
+// <a href="#" class="cta-box-black p2 mb2 sm5 inline-block">FIND A STORE</a>
+// <a href="#" class="cta-outline-black p2 mb2 sm5 inline-block">FIND A STORE</a>
+// <a href="#" class="cta-box-outline-black p2 mb2 sm5 inline-block">FIND A STORE</a>
+// <a href="#" class="cta-triangle-black p2 mb2 sm5 inline-block text-center">FIND A STORE<span></span></a>
+//
+// Styleguide Elements.Buttons
+
+
+@mixin common-triangle-styles {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-bottom: -1px;
+  margin-left: 0.2em;
+  content: '';
+  border-top: 0.4em solid transparent;
+  border-bottom: 0.4em solid transparent;
+}
+
+@mixin cta-triangle-icon-color($buttons, $color, $primary) {
+  border-left: 0.4em solid mapFetch($buttons, $color, $primary);
+}
+
+@mixin cta-triangle($buttons, $color, $primary) {
+  color: mapFetch($buttons, $color, $primary);
+  border: none;
+  background-color: rgba(0,0,0,0);
+}
+
+@mixin cta-triangle-icon-hide {
+  display: none;
+}
+
+@mixin cta-outline-color($buttons, $color, $primary) {
+  color: mapFetch($buttons, $color, $primary);
+  border: solid 1px mapFetch($buttons, $color, $primary);
+  background-color: rgba(0,0,0,0);
+}
+
+@mixin cta-box($buttons, $color, $primary, $secondary) {
+  color: mapFetch($buttons, $color, $secondary);
+  border: 1px solid mapFetch($buttons, $color, $primary);
+  background-color: mapFetch($buttons, $color, $primary);
+}
+
+@mixin cta-box-color-hover($buttons, $color, $primary, $secondary) {
+  color: mapFetch($buttons, $color, $primary);
+  border: 1px solid mapFetch($buttons, $color, $secondary);
+  background-color: mapFetch($buttons, $color, $secondary);
+}
+
+@mixin cta-box-outline-color($buttons, $color, $primary, $secondary) {
+  color: mapFetch($buttons, $color, $secondary);
+  border: 1px solid mapFetch($buttons, $color, $primary);
+  background-color: mapFetch($buttons, $color, $primary);
+}
+
+@mixin cta-box-outline-color-hover($buttons, $color, $primary, $secondary) {
+  color: mapFetch($buttons, $color, $primary);
+  background-color: mapFetch($buttons, $color, $secondary);
+}
+
+@mixin cta-outline-color-hover($buttons, $color, $primary, $secondary) {
+  color: mapFetch($buttons, $color, $secondary);
+  background-color: mapFetch($buttons, $color, $primary);
+}
+
+#{$parentSelector} {
+
+  //Common styles to all buttons
+  [class*='cta-triangle'],
+  [class*='cta-box'],
+  [class*='cta-outline'],
+  [class*='cta-box-outline'] {
+    position: relative;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.1s;
+  }
+  
+  .triangle {
+    border-left: 0.4em solid #ffffff;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-bottom: 0.1em;
+    margin-left: 0;
+    content: '';
+    border-top: 0.4em solid transparent;
+    border-bottom: 0.4em solid transparent;
+    font-size: .75em;
+  }
+
+  [class*='cta-triangle'] span::after {
+    @include common-triangle-styles
+  }
+
+  [class*='cta-box'],
+  [class*='cta-outline'] {
+    text-align: center;
+  }
+
+  $index: 0;
+  @each $bpSelector, $bp in $breakpoints {
+    $index: $index + 1;
+    // no media queries for first
+    @if $index == 1 {
+      @each $color, $value in $buttons {
+        .cta-triangle-#{$color} span::after {
+          @include cta-triangle-icon-color($buttons, $color, 'primary')
+        }
+        .cta-triangle-#{$color} {
+          @include cta-triangle($buttons, $color, 'primary')
+        }
+        .cta-box-#{$color} {
+          @include cta-box($buttons, $color, 'primary', 'secondary')
+        }
+        .cta-box-#{$color}:hover {
+          @include cta-box-color-hover($buttons, $color, 'primary', 'secondary')
+        }
+        .cta-box-#{$color} span::after {
+          @include cta-triangle-icon-hide
+        }
+        .cta-box-outline-#{$color} {
+          @include cta-box-outline-color($buttons, $color, 'primary', 'secondary')
+        }
+        .cta-box-outline-#{$color}:hover {
+          @include cta-box-outline-color-hover($buttons, $color, 'primary', 'secondary')
+        }
+        .cta-box-outline-#{$color} span::after {
+          @include cta-triangle-icon-hide
+        }
+        .cta-outline-#{$color} {
+          @include cta-outline-color($buttons, $color, 'primary')
+        }
+        .cta-outline-#{$color}:hover {  
+          @include cta-outline-color-hover($buttons, $color, 'primary', 'secondary')
+        }
+        .cta-outline-#{$color} span::after {
+          @include cta-triangle-icon-hide
+        }
+      }
+    }
+    @else {
+      @media only screen and (min-width: $bp) {
+        [class*='#{$bpSelector}-cta-triangle'] span::after {
+          @include common-triangle-styles
+        }
+
+        @each $color, $value in $buttons {
+          .#{$bpSelector}-cta-triangle-#{$color} span::after {
+            @include cta-triangle-icon-color($buttons, $color, 'primary')
+          }
+          .#{$bpSelector}-cta-triangle-#{$color} {
+            @include cta-triangle($buttons, $color, 'primary')
+          }
+          .#{$bpSelector}-cta-box-#{$color} {
+            @include cta-box($buttons, $color, 'primary', 'secondary')
+          }
+          .#{$bpSelector}-cta-box-#{$color}:hover {
+            @include cta-box-color-hover($buttons, $color, 'primary', 'secondary')
+          }
+          .#{$bpSelector}-cta-box-#{$color} span::after {
+            @include cta-triangle-icon-hide
+          }
+          .#{$bpSelector}-cta-box-outline-#{$color} {
+            @include cta-box-outline-color($buttons, $color, 'primary', 'secondary')
+          }
+          .#{$bpSelector}-cta-box-outline-#{$color}:hover {
+            @include cta-box-outline-color-hover($buttons, $color, 'primary', 'secondary')
+          }
+          .#{$bpSelector}-cta-box-outline-#{$color} span::after {
+            @include cta-triangle-icon-hide
+          }
+          .#{$bpSelector}-cta-outline-#{$color} {
+            @include cta-outline-color($buttons, $color, 'primary')
+          }
+          .#{$bpSelector}-cta-outline-#{$color}:hover {  
+            @include cta-outline-color-hover($buttons, $color, 'primary', 'secondary')
+          }
+          .#{$bpSelector}-cta-outline-#{$color} span::after {
+            @include cta-triangle-icon-hide
+          }
+        }
+      }
+    }
+  }
+}
+/* ---- END CTA utility classes ---- */

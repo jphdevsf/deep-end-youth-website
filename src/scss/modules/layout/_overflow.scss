@@ -1,0 +1,6 @@
+$_config: (
+  property: 'overflow',
+  propValues: visible hidden scroll auto
+);
+
+@include buildClasses($_config)

@@ -1,0 +1,55 @@
+
+
+/* Adding CSS for link-validator */
+#error-container {
+  position: fixed;
+  z-index: 999999;
+  bottom: 0;
+  left: 0;
+
+  font-family: tahoma;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 13px;
+  opacity: .95;
+  width: 90%;
+  max-width: 300px;
+  height: auto;
+  max-height:300px;
+  overflow-y: auto;
+}
+#error-container > div {
+  box-sizing: border-box;
+}
+#validator-close-link {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}
+div#link-validator
+{
+  display: none;
+  width: 100%;
+  padding: 10px;
+  color: #fff;
+  background-color: salmon;
+}
+div#link-validator span
+{
+  font-weight: 300;
+  color: midnightblue;
+  position: relative;
+  word-break: break-all;
+}
+
+div#link-validator .lvError {
+font-weight: bold;
+}
+@media (max-width:740px)
+{
+  div#error-container
+  {
+      height: 240px;
+  }
+}

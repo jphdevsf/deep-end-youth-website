@@ -1,0 +1,16 @@
+// Font weight
+//
+// `.text[8-120]` em-based unit
+//
+// Markup:
+// <span class="text16 p1 mb2 sm5 block fw300">Hello World!</span>
+// <span class="text16 p1 mb2 sm5 block fw500">Hello World!</span>
+// <span class="text16 p1 mb2 sm5 block fw700">Hello World!</span>
+//
+// Styleguide Typography.6
+$config: (
+  property: 'font-weight',
+  name: 'fw',
+  propValues: buildNumSequence($min:100, $max:900, $inc:100),
+);
+@include buildClasses($config);

@@ -1,0 +1,97 @@
+// Font + Sizing
+//
+// Short-hand utility classes combining font family definitions and text sizing in one. Font family definitions are brand specific to each brand and configured in $font-config map of respective brand's _config.scss
+//
+// `.[name][8-120]`
+//
+// Markup:
+// <span class="oswald16 p1 mb2 sm5 block">Hello World!</span>
+// <span class="roboto24 p1 mb2 sm5 block">Hello World!</span>
+// <span class="open-sans48 p1 mb2 sm5 block">Hello World!</span>
+//
+// Styleguide Typography.3
+
+// function for converting pixel value number to em value
+@function em($pixels, $context: map-get($font-resize-config, baseFontSize)) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+
+  @return $pixels / $context  * 1em;
+}
+
+// Used in Text Component generation for common font sizing
+@mixin generateTextUtilityClass($size, $fontConfig) {
+  font-family: map-get($fontConfig , "family");
+  font-size: em($size);
+  line-height: em(18);
+}
+// Used in Text Component generation for less-common "tall" versions of font sizing (extra line-height)
+@mixin generateTallTextUtilityClass($size, $fontConfig) {
+  font-family: map-get($fontConfig , "family");
+  font-size: em($size); 
+  line-height: em(50 - ($size / 10));
+}
+
+#{$parentSelector} {
+  /*----------------------- Fonts -----------------------*/
+  // CONFIG FOR THIS MODULE IS BRAND SPECIFIC, SEE YOUR CONFIG
+  // This section generates classes for fonts combining maps of fonts, sizes, and breakpoints
+  $index: 0;
+  $fontMin: 8;
+  $fontMax: 120;
+  //loop through breakpoints map
+  @each $bpSelector,
+  $bp in $breakpoints {
+    // no media query for first breakpoint (default styles)
+    @if $index==0 {
+      @each $fontName, $fontConfig in $font-config {
+        $appendRules: map-get-if-exists($fontConfig, appendRules);
+        // build basic font utility class (no size)
+        
+        // .#{$fontName} {
+        //   font-family: map-get($fontConfig , "family");
+        // }
+
+        // build utility classes for range of sizes defined by "min" and "max"
+        $size: $fontMin;
+        @while $size <= $fontMax {
+          .#{$fontName}#{$size} {
+              @include generateTextUtilityClass($size, $fontConfig);
+              @if $appendRules { @include appendDeclarations ($appendRules) };
+          }
+          // variable increment
+          $size: $size + 1
+        }
+      }
+    }
+    // media query for rest of breakpoints
+    @else {
+      @media only screen and (min-width: $bp) {
+        @each $fontName, $fontConfig in $font-config {
+          $appendRules: map-get-if-exists($fontConfig, appendRules);
+          // build basic font utility class (no size)
+          .#{$bpSelector}#{$fontName} {
+            font-family: map-get($fontConfig , "family");
+          }
+          // build utility classes for range of sizes defined by "min" and "max"
+          $size: $fontMin;
+          @while $size <= $fontMax {
+            .#{$bpSelector}-#{$fontName}#{$size} {
+              @include generateTextUtilityClass($size, $fontConfig);
+              @if $appendRules { @include appendDeclarations ($appendRules) };
+            }
+            // variable increment
+          $size: $size + 1
+          }
+        }
+      }
+    }
+    //increment and loop again
+    $index: $index + 1;
+  }
+}

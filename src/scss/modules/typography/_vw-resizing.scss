@@ -1,0 +1,39 @@
+// VW Font Resizing
+//
+// This class causes text to shrink/grow relative to browser width using css vw units. Most commonly used in conjunction with text sizing utility classes but influcen any css properties defined with relative em units (width, height, margin, padding, font-size, line-height, top, right, bottom, left, etc.).
+//
+// `.vw` (vw-based unit)
+//
+// Markup:
+// <div class="rw vw">
+//   <span class="text18 block">SOME HEADER COPY SIZED WITH EMS</span>
+//   <span class="text14 block">Some sub copy sized with ems (resize browser width to see text size shrink/grow relative to browser width).</span>
+// </div>
+//
+// Styleguide Typography.4
+
+@mixin generateVw($value, $breakpoint: 'none') {
+  @if $breakpoint == 'none' {
+    .vw {
+      font-size: $value
+    }
+  } @else {
+    @media screen and (min-width: $breakpoint) {
+      .vw {
+        font-size: $value;
+      }
+    }
+  }
+}
+$baseFontSize: map-get($font-resize-config, baseFontSize);
+$desktopArtboard: map-get($font-resize-config, desktopArtboard);
+$mobileArtboard: map-get($font-resize-config, mobileArtboard);
+$mobileVw: ($baseFontSize / $mobileArtboard) * 100 + unquote('vw');
+$desktopVw: ($baseFontSize / $desktopArtboard) * 100 + unquote('vw');
+$maxWidthEm: ($baseFontSize / $desktopArtboard * $desktop-max-width) * (1 / 16) + unquote('em');
+
+html #{$parentSelector} {
+  @include generateVw($mobileVw);
+  @include generateVw($desktopVw, $breakpoint: map-get($breakpoints, 'md') );
+  @include generateVw($maxWidthEm, $breakpoint: $desktop-max-width + unquote('px') );
+}

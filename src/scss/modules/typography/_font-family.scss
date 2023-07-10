@@ -1,0 +1,17 @@
+// Font Family
+//
+// Utility classes for font family definitions are brand specific to each brand and configured in $font-config map of respective brand's _config.scss
+//
+// `.[name]`
+//
+// Markup:
+// <span class="oswald trext-16 p1 mb2 sm5 block">Hello World!</span>
+// <span class="roboto trext-16 p1 mb2 sm5 block">Hello World!</span>
+// <span class="open-sans trext-16 p1 mb2 sm5 block">Hello World!</span>
+//
+// Styleguide Typography.2
+$_config: (
+  property: 'font-family',
+  propValues: $font-config,
+);
+@include buildClasses($_config);

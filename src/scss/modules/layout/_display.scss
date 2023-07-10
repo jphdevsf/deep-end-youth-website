@@ -1,0 +1,29 @@
+// Display
+//
+// Utility classes for controlling css display property, hiding/showing content at different breakpoints and line-breaking behavior.
+//
+// ||
+// |-|
+// | `.block` |
+// | `.inline` |
+// | `.inline-block` |
+// | `.hide-it` |
+// | `.flex` |
+//
+// Markup:
+// <span class="hide-it md-block mb2 blue">This text is hidden on mobile, but displays block on desktop</span>
+// <span class="block mb2">This text line breaks on desktop, <span class="inline md-block">but displays inline on mobile</span></span>
+// <span class="md-hide-it block mb2 dark-gray">This text is hidden on desktop, but displays block on mobile</span>
+//
+// Styleguide Layout.3
+
+$_config: (
+  property: 'display',
+  propValues: none block inline inline-block flex,
+  valIsSel: true,
+  rename: (
+    none: 'hide-it'
+  )
+);
+
+@include buildClasses($_config)

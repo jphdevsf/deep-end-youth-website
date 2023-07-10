@@ -1,0 +1,115 @@
+// Position
+//
+// Utility classes for controlling css position and related top/right/bottom/left properties.
+//
+// ||
+// |-|
+// | `.abs` |
+// | `.relative` |
+// | `.static` |
+// | `.fixed` |
+// | `.abs-container` - short-hand utility class that sets position: absolute; width: 100%; height: 100%; |
+// | `.rel-container` - short-hand utility class that sets position: relative; width: 100%; height: 100%; |
+// | `.top` |
+// | `.right` |
+// | `.bottom` |
+// | `.left` |
+// | `.t[1-10]` (percentage-based units) |
+// | `.r[1-10]` (percentage-based units) |
+// | `.b[1-10]` (percentage-based units) |
+// | `.l[1-10]` (percentage-based units) |
+//
+// Markup:
+// <div class="block sm11 h15 m1 relative mx-auto">
+//   <div class="abs-container border-gray">
+//     <span class="abs bottom left block p2 text-center sm8 md3 border-black">POSITION TEST 1</span>
+//     <span class="abs top r2 block p2 text-center sm8 md3 border-black">POSITION TEST 2</span>
+//   </div>
+//   <span class="relative mx-auto block p2 text-center sm8 md3 border-black">POSITION TEST 3</span>
+// </div>
+//
+// Styleguide Layout.6
+
+$_config: (
+  property: 'position',
+  valIsSel: true,
+  propValues: absolute relative static fixed,
+  rename: (
+    absolute: 'abs'
+  )
+);
+@include buildClasses($_config);
+
+
+$_config: (
+  property: 'top',
+  name: 't',
+  propValues: buildNumSequence($min:0, $max:10, $inc:1),
+  unit: '%',
+  rename: (
+    t0: 'top'
+  )
+);
+@include buildClasses($_config);
+
+
+$_config: (
+  property: 'right',
+  name: 'r',
+  propValues: buildNumSequence($min:0, $max:10, $inc:1),
+  unit: '%',
+  rename: (
+    r0: 'right'
+  )
+);
+@include buildClasses($_config);
+
+
+$_config: (
+  property: 'bottom',
+  name: 'b',
+  propValues: buildNumSequence($min:0, $max:10, $inc:1),
+  unit: '%',
+  rename: (
+    b0: 'bottom'
+  )
+);
+@include buildClasses($_config);
+
+
+$_config: (
+  property: 'left',
+  name: 'l',
+  propValues: buildNumSequence($min:0, $max:10, $inc:1),
+  unit: '%',
+  rename: (
+    l0: 'left'
+  )
+);
+@include buildClasses($_config);
+
+
+$_config: (
+  propValues: absolute relative,
+  rename: (
+    absolute: 'abs-container',
+    relative: 'rel-container'
+  ),
+  appendRules: (
+    absolute: (
+      position:absolute,
+      width:100%,
+      height:100%,
+      top:0,
+      left:0,
+    ),
+    relative: (
+      position: relative,
+      width: 100%,
+      height: 100%,
+      top: inherit,
+      left: inherit,
+    )
+  )
+);
+@include buildClasses($_config);

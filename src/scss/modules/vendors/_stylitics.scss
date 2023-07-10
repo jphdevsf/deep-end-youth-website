@@ -1,0 +1,130 @@
+/* Fixing arrows position and display */
+.stylitics-widget-outfits-container .slick-next:before {
+  background: none;
+  display: block;
+  line-height: 5;
+}
+.stylitics-widget-outfits-container .slick-prev:before {
+  background: none;
+  display: block;
+  line-height: 5;
+}
+
+
+/* Remove stylitics redundant arrow */
+.stylitics-widget-static-cta {
+  display: none;
+}
+.stylitics-widget-outfits-container [data-slick-index="0"] .stylitics-widget-outfit-placeholder:hover {
+  cursor: default;
+}
+
+.stylitics-widget-outfit-placeholder:hover {
+  cursor: pointer;
+}
+
+button.stylitics-outfit-show-button {
+  width: 100% !important;
+}
+
+/* Hide CTA on lifestyle image */
+.stylitics-widget-outfit-cta-bar {
+  display: none !important;
+}
+
+.stylitics-outfit-cta-text {
+  display: none !important;
+}
+
+.styliticsCarousel {
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.styliticsCarousel .slick-arrow {
+  box-shadow: none;
+}
+
+.stylitics-widget-outfits-container .stylitics-widget-mobile {
+  box-sizing: border-box;
+}
+
+.stylitics-widget-outfit-mobile-close.stylitics-widget-outfit-legacy-click-to-reveal {
+  top: 0.3em;
+}
+
+/* Reduce size of widget close symbol */
+.stylitics-widget-outfit-mobile-close {
+  transform: scale(0.5) !important;
+}
+@media only screen and (max-width: 40em) {
+  .stylitics .slick-arrow:before {
+      display: block;
+  }
+  .stylitics .slick-prev {
+    left: -18px !important;
+  }
+}
+
+@media only screen and (max-width: 40em) {
+  .styliticsCarousel {
+    padding: 0 5%;
+  }
+  .stylitics .slick-next {
+    right: -20px !important;
+  }
+}
+
+
+
+
+
+
+/*! START MW specific css */ 
+
+#featured-container {
+
+  .styliticsCarousel .slick-slider {
+    margin: 0
+  }
+
+  .styliticsCarousel .slick-arrow {
+    top: 60%;
+  }
+
+  @media screen and (min-width: 640px) {
+    .styliticsCarousel {
+      margin-bottom: 3%;
+      padding: 0;
+    }
+  }
+
+  @media screen and (max-width: 549px) {
+    .stylitics-outfits-container button.slick-arrow {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      width: 40px !important;
+      height: 40px;
+      z-index: 100;
+    }
+    .stylitics-outfits-container button.slick-arrow:after {
+    content: '';
+        width: 16px;
+        height: 16px;
+        border: solid 3px black;
+        position: absolute;
+        top: 50%;
+        left: 57%;
+        transform: translate(-50%,-50%) rotate(-134deg);
+        border-left: none;
+        border-bottom: none;
+    }
+    
+    .stylitics-outfits-container button.slick-arrow.slick-next:after {
+          transform: translate(-50%, -50%) rotate(45deg);
+          left: 41%;
+    }
+  }
+}
+
+/*! END MW specific css */ 

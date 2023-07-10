@@ -1,0 +1,145 @@
+// Miscellaneous Type Classes
+//
+// Styleguide Typography.7
+
+// Line Height
+//
+// `.lh[100-200]` (em-based value incrementing by 10)
+//
+// Markup:
+// <span class="text16 border-gray inline-block m1 lh100">SOME TEXT WITH LINE-HEIGHT</span>
+// <span class="text16 border-gray inline-block m1 lh150">SOME TEXT WITH LINE-HEIGHT</span>
+// <span class="text16 border-gray inline-block m1 lh200">SOME TEXT WITH LINE-HEIGHT</span>
+//
+// Styleguide Typography.7.1
+
+/* --------------- Line Height --------------- */
+$config: (
+  property: 'line-height',
+  name: 'lh',
+  propValues: buildNumSequence($min:100, $max:300, $inc:10),
+  unit: 'em',
+  multiplier: 1 / 100,
+  specificity: 'medium'
+);
+
+@include buildClasses($config);
+
+// Letter Spacing
+//
+// `.ls[-10-200]` (em-based value incrementing by 5)
+//
+// Markup:
+// <span class="text16 block m1 ls10">SOME SPACE CONTROLLED TEXT</span>
+// <span class="text16 block m1 ls10">SOME SPACE CONTROLLED TEXT</span>
+// <span class="text16 block m1 ls25">SOME SPACE CONTROLLED TEXT</span>
+//
+// Styleguide Typography.7.2
+
+/* --------------- Letter Spacing --------------- */
+$config: (
+  property: 'letter-spacing',
+  name: 'ls',
+  propValues: buildNumSequence($min:-10, $max:200, $inc:5),
+  unit: 'em',
+  multiplier: 1 / 100
+);
+
+@include buildClasses($config);
+
+// Text Shadow
+//
+// `.ts[1-10]` (alpha opacity value)
+//
+// Markup:
+// <span class="text24 block m1 ts1">SOME TEXT WITH A SHADOW</span>
+// <span class="text24 block m1 ts5">SOME TEXT WITH A SHADOW</span>
+// <span class="text24 block m1 ts10">SOME TEXT WITH A SHADOW</span>
+//
+// Styleguide Typography.7.3
+
+/* ------------ Text Shadow ------------ */
+$config: (
+  property: 'text-shadow',
+  name: 'ts',
+  propValues: (
+    'ts1': (2px 2px 6px rgba(0, 0, 0, 0.1)),
+    'ts2': (2px 2px 6px rgba(0, 0, 0, 0.2)),
+    'ts3': (2px 2px 6px rgba(0, 0, 0, 0.3)),
+    'ts4': (2px 2px 6px rgba(0, 0, 0, 0.4)),
+    'ts5': (2px 2px 6px rgba(0, 0, 0, 0.5)),
+    'ts6': (2px 2px 6px rgba(0, 0, 0, 0.6)),
+    'ts7': (2px 2px 6px rgba(0, 0, 0, 0.7)),
+    'ts8': (2px 2px 6px rgba(0, 0, 0, 0.8)),
+    'ts9': (2px 2px 6px rgba(0, 0, 0, 0.9)),
+    'ts10': (2px 2px 6px rgba(0, 0, 0, 1)),
+  )
+);
+
+@include buildClasses($config);
+
+// Superscript
+//
+// Insanely super! Works in conjunction with value of superOffset defined in $font-config of respective brand config.scss file for specific fonts to reduce size of text characters and top align (most commonly currency characters and cents values).
+//
+// `.super` 
+//
+// Markup:
+// <span class="roboto50 block">
+// <span class="super">$</span>200<span class="super">99</span>
+// </span>
+//
+// Styleguide Typography.7.4
+
+/*----------------------- Superscript -----------------------*/
+@each $fontName, $fontConfig in $font-config {
+  [class*="#{$fontName}"] .super {
+    font-size:  .5em;
+    vertical-align: super;
+    top: map-get($fontConfig , "superOffset");
+    position:relative;
+  }
+}
+
+
+#{$parentSelector} {
+  /* ------------ normalize H# tags ------------ */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.1em;
+  }
+
+  /* ------------ Misc Text Styles ------------ */
+  .italic {
+    font-style: italic;
+  }
+  .caps, .capitalize {
+    text-transform: uppercase;
+  }
+  .nowrap {
+    white-space: nowrap;
+  }
+  .break-word {
+    word-wrap: break-word;
+  }
+  .underline {
+    text-decoration: underline;
+  }
+  .list-style-none {
+    list-style: none;
+  }
+  .list-reset {
+    list-style: none;
+    padding-left: 0;
+  }
+  .truncate {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

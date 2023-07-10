@@ -1,0 +1,178 @@
+// Misc Config
+//
+// | Variable Name | Value Type | Description |
+// |-|-|-|
+// | <code>$parentSelector</code> | {string} | selector prepended to all utility classes to limit scope of css framework as your project requires to operate within a parent container. By default this is set to main content area for homepage of respective brand but can be adjusted for project deliverables meant for other site placements (global banner, PGP, PDP, popup modal, etc.) |
+// | <code>$desktop-max-width</code> | {number} | max-width pixel value or cap at which responsive content will stop growing to fill the display and display centered. |
+//
+// Styleguide Globals.1
+
+$parentSelector: 'body';
+$desktop-max-width: 1440;
+
+// Font Resize Config
+//
+// | Variable Name | Value Type | Description |
+// |-|-|-|
+// | <code>$font-resize-config</code> | {map} | contains various values for calculating font resizing of text related to viewport width |
+// | <code>$font-resize-config.baseFontSize</code> | {number (with no unit)} | Leveraged in various em and vw unit sizing calculation. A value of 16 is equivalent to saying 16px == 1em. |
+// | <code>$font-resize-config.desktopArtboard</code> | {number (with no unit)} | A pixel reference to final desktop design Sketch or Photoshop artboard dimensions and also incorporated into em/vw unit calculation. |
+// | <code>$font-resize-config.mobileArtboard</code> | {number (with no unit)} | A pixel reference to final mobile design Sketch or Photoshop artboard dimensions and also incorporated into em/vw unit calculation. |
+//
+// Styleguide Globals.2
+$font-resize-config: (
+  baseFontSize: 16,
+  desktopArtboard: 1440,
+  mobileArtboard: 375
+);
+
+// Breakpoint Config
+//
+// | Variable Name | Value Type | Description |
+// |-|-|-|
+// | <code>$breakpoints</code> | {map} | Breakpoint definition. Add or remove breakpoints as needed. Both key and value are utilized. Key name will be prefixed to all breakpoint specific utility classes (except in the case of the first breakpoint where key name is omitted and serves as default "mobile up" size). Value assigned serves as media query min-width breakpoint that respective breakpoint specific classes will operate at.  |
+//
+//     $breakpoints: (
+//     'xs': 320px,
+//     'sm': 480px,
+//     'md': 640px,
+//     'lg': 1020px,
+//     'xl': 1200px
+//     );
+//
+// Styleguide Globals.3
+$breakpoints: (
+'xs': 320px,
+'sm': 480px,
+'md': 640px,
+'lg': 1020px,
+'xl': 1200px
+);
+
+// Font Config
+//
+// Font definition including nested map configs for each font a brand requires.
+//
+// | Variable Name | Value Type | Description |
+// |-|-|-|
+// | <code>name</code> | {map} | utility class name. |
+// | <code>family</code> | {list} | desired value of css font-family. |
+// | <code>superOffset</code> | {number} | desired value of css top. Include unit such as em if needed. |
+//
+//     $font-config: (
+//       'oswald' : (
+//         'family' : ('Oswald', sans-serif),
+//         'superOffset' : -.1em,
+//         appendRules: (color: blue)
+//       )
+//     )
+//
+// Styleguide Globals.4
+
+$font-config: (
+  'josefin-sans' : (
+    'family' : ('Josefin Sans', sans-serif),
+    'superOffset' : -.1em
+  )
+  // 'oswald' : (
+  //   'family' : ('Oswald', sans-serif),
+  //   'superOffset' : -.1em
+  // ),
+  // 'roboto' : (
+  //   'family' : ('Roboto', Arial, sans-serif),
+  //   'superOffset' : 0
+  // ),
+  // 'open-sans' : (
+  //   'family' : ('Open Sans', Arial, sans-serif),
+  //   'superOffset' : 0
+  // ),
+  // 'cor-gar' : (
+  //   'family': ( 'Cormorant Garamond', sans-serif),
+  //   'superOffset' : .25em
+  // ),
+  // 'roboto-condensed' : (
+  //   'family': ( 'Roboto Condensed', sans-serif),
+  //   'superOffset' : .25em
+  // )
+);
+
+// Color Config
+//
+// Color definitions (Add/remove colors as needed but note that <code>$buttons</code> map is dependent on some or all of these). Keys will be integrated in css class names throughout the framework. Values should contain color codes to reflect current creative style guides.
+//
+//     $colors: (
+//      'white': #ffffff,
+//      'black': #000000
+//     )
+//
+// Styleguide Globals.5
+
+$colors: (
+'white': #ffffff,
+'blue': #001E56,
+'light-blue': #12609A,
+'light-gray': #F9F9F9,
+'gray': #B9B9B9,
+'dark-gray': #4B4B4B,
+'black': #232323,
+'dark-black': #000000,
+'blue-trans': rgba(0, 30, 86, 0.75),
+'light-blue-trans': rgba(18, 96, 154, 0.75),
+'black-trans': rgba(0, 0, 0, .75),
+'white-trans': rgba(255, 255, 255, .75),
+'gold': #8F5F32
+);
+
+// Button Config
+//
+// Primary and secondary color definitions for buttons. It is recommended you reference colors defined in <code>$colors</code> config map via <code>map-get()</code> to keep all utility classes that lean on color and buttons in sync. Add/remove colors as needed.
+//
+//     'utility-class-name-here': (
+//       primary: map-get($colors,'my-favorite-color-1'),
+//       secondary: map-get($colors,'my-favorite-color-2')
+//     )
+//
+// Styleguide Globals.6
+
+$buttons: (
+  'blue': (
+    primary: map-get($colors,'blue'),
+    secondary: map-get($colors,'white')
+  ),
+  'white': (
+    primary: map-get($colors,'white'),
+    secondary: map-get($colors,'black')
+  ),
+  'white-hov-blue': (
+    primary: map-get($colors,'white'),
+    secondary: map-get($colors,'blue')
+  ),
+  'yellow': (
+    primary: map-get($colors,'yellow'),
+    secondary: map-get($colors,'blue')
+  ),
+  'light-gray': (
+    primary: map-get($colors,'light-gray'),
+    secondary: map-get($colors,'black')
+  ),
+  'light-gray-hov-blue': (
+    primary: map-get($colors,'light-gray'),
+    secondary: map-get($colors,'blue')
+  ),
+  'gray': (
+    primary: map-get($colors,'gray'),
+    secondary: map-get($colors,'white')
+  ),
+  'dark-gray': (
+    primary: map-get($colors,'dark-gray'),
+    secondary: map-get($colors,'white')
+  ),
+  'black': (
+    primary: map-get($colors,'black'),
+    secondary: map-get($colors,'white')
+  ),
+  'dark-black': (
+    primary: map-get($colors,'dark-black'),
+    secondary: map-get($colors,'white')
+  )
+);

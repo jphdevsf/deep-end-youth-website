@@ -1,0 +1,29 @@
+// use of .terms selector is deprecated. styles here meant to reset global button styles have moved to _overrides.scss for JAB/MW and target all buttons scoped to this framework more broadly. Other brands don't seem to need them.
+// .terms {
+//   line-height: 1.6em;
+//   // letter-spacing: 0.125em;
+//   -webkit-appearance: none;
+//   -moz-appearance: none;
+//   border-radius: 0;
+//   cursor: pointer;
+//   font-weight: 400;
+//   position: relative;
+//   text-align: center;
+//   text-decoration: none;
+//   display: inline-block;
+//   padding: 0;
+//   background-color: transparent;
+//   -webkit-transition: none;
+//   transition: none;
+//   border: none;
+//   max-width: none;
+//   text-transform: none;
+//   text-shadow: none;
+//   -webkit-box-shadow: none;
+//   box-shadow: none;
+// }
+
+// .terms:hover {
+//   background-color: unset;
+//   box-shadow: none;
+// }

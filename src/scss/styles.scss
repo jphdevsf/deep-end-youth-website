@@ -1,0 +1,85 @@
+// brand config, functions, mixins, etc.
+@import 'globals/index';
+
+// shared modules
+@import 'modules/elements/index';
+@import 'modules/layout/index';
+@import 'modules/pages/index';
+@import 'modules/typography/index';
+@import 'modules/vendors/index';
+
+
+// Project-specific module
+
+/* -------------- App Styles / Custom Styles --------------- */
+body {
+  font-size: 16px;
+  background-color: #44c7de;
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+body, html {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-image {
+  background: url('./../images/facebook-cover2.jpeg');
+  opacity: 0.75;
+  filter: blur(50px);
+  -webkit-filter: blur(50px);
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+} 
+.card {
+  font-size: 1em;
+  border-radius: 1em;
+  margin: 0.25em;
+  text-decoration: none;
+  transform: scale(1);
+  transition: 0.25s;
+}
+
+.card-link-text {
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 0.85em;
+}
+
+.card-arrow {
+  position: absolute;
+  top: 0.2em;
+  right: 1.5em;
+  width:20px;
+  height:20px;
+  transition: 0.25s;
+}
+
+.card-arrow:before {
+  content: "";
+  position:absolute;
+}
+/* the vertical line */
+.card-arrow:before {
+  width: 12px;
+  height: 12px;
+  border-left: solid 2px #000000;
+  border-top: solid 2px #000000;
+  transform: rotate(135deg);
+}
+.card:hover {
+  transform: scale(1.025);
+}
+.card:hover .card-arrow {
+  right: 1em;
+}

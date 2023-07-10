@@ -1,0 +1,1450 @@
+// Grid (Legacy)
+//
+// A modified version of Foundation 12-grid system.
+//
+// |||
+// |-|-|
+// | `.rw` | designates an an element as row or parent containing column elements. |
+// | `.cls` | designates a column element generally used on child elements of a row element. |
+// | `.sm[1-12]` | designates the width an element should be (mobile up). Is a percentage-based value where 12 === 100% |
+// | `.md[1-12]` | designates the width an element should be (medium defined breakpoint and up). Is a percentage-based value where 12 === 100% |
+// | `.lg[1-12]` | designates the width an element should be (large defined breakpoint and up). Is a percentage-based value where 12 === 100% |
+//
+// Markup:
+// <div class="rw mb2">
+//   <div class="cls sm2 md4 bg-gray p3">Mob:2/Desk:4</div>
+//   <div class="cls sm4 md4 bg-dark-gray p3">Mob:4/Desk:4</div>
+//   <div class="cls sm6 md4 bg-gray p3">Mob:6/Desk:4</div>
+// </div>
+// <div class="rw mb2">
+//   <div class="cls md3 bg-gray p3">Mob:12/Desk:3</div>
+//   <div class="cls md6 bg-dark-gray p3">Mob:12/Desk:6</div>
+//   <div class="cls md3 bg-gray p3">Mob:12/Desk:3</div>
+// </div>
+// <div class="rw mb2">
+//   <div class="cls sm6 md2 bg-gray p3">Mob:6/Desk:2</div>
+//   <div class="cls sm6 md8 bg-dark-gray p3">Mob:6/Desk:8</div>
+//   <div class="cls sm12 md2 bg-gray p3">Mob:12/Desk:2</div>
+// </div>
+// <div class="rw mb2">
+//   <div class="cls sm3 bg-gray p3">Mob:3/Desk:3</div>
+//   <div class="cls sm9 bg-dark-gray p3">Mob:9/Desk:9</div>
+// </div>
+//
+// Styleguide Layout.1
+
+/*----------------------- 12 Grid (float-based lifted from MW engineering css) -------------------------------------*/
+#{$parentSelector} {
+  .rw {
+        margin: 0 auto;
+        max-width: $desktop-max-width + unquote('px');
+        width: 100%
+    }
+
+    .rw:after,
+    .rw:before {
+        content: " ";
+        display: table
+    }
+
+    .rw:after {
+        clear: both
+    }
+
+    .rw.collapse>.cl,
+    .rw.collapse>.cls {
+        padding-left: 0;
+        padding-right: 0
+    }
+
+    .rw.collapse .rw {
+        margin-left: 0;
+        margin-right: 0
+    }
+
+    .rw .rw {
+        margin: 0;
+        max-width: none;
+        width: auto
+    }
+
+    .rw .rw:after,
+    .rw .rw:before {
+        content: " ";
+        display: table
+    }
+
+    .rw .rw:after {
+        clear: both
+    }
+
+    .rw .rw.collapse {
+        margin: 0;
+        max-width: none;
+        width: auto
+    }
+
+    .rw .rw.collapse:after,
+    .rw .rw.collapse:before {
+        content: " ";
+        display: table
+    }
+
+    .rw .rw.collapse:after {
+        clear: both
+    }
+
+    .cl,
+    .cls {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding-left: .9375rem;
+        padding-right: .9375rem;
+        width: 100%;
+        float: left
+    }
+
+    .cl+.cl:last-child,
+    .cl+.cls:last-child,
+    .cls+.cl:last-child,
+    .cls+.cls:last-child {
+        float: right
+    }
+
+    .cl+.cl.end,
+    .cl+.cls.end,
+    .cls+.cl.end,
+    .cls+.cls.end {
+        float: left
+    }
+
+    @media only screen {
+        .sm-push0 {
+            position: relative;
+            left: 0;
+            right: auto
+        }
+
+        .sm-pull0 {
+            position: relative;
+            right: 0;
+            left: auto
+        }
+
+        .sm-push1 {
+            position: relative;
+            left: 8.33333%;
+            right: auto
+        }
+
+        .sm-pull1 {
+            position: relative;
+            right: 8.33333%;
+            left: auto
+        }
+
+        .sm-push2 {
+            position: relative;
+            left: 16.66667%;
+            right: auto
+        }
+
+        .sm-pull2 {
+            position: relative;
+            right: 16.66667%;
+            left: auto
+        }
+
+        .sm-push3 {
+            position: relative;
+            left: 25%;
+            right: auto
+        }
+
+        .sm-pull3 {
+            position: relative;
+            right: 25%;
+            left: auto
+        }
+
+        .sm-push4 {
+            position: relative;
+            left: 33.33333%;
+            right: auto
+        }
+
+        .sm-pull4 {
+            position: relative;
+            right: 33.33333%;
+            left: auto
+        }
+
+        .sm-push5 {
+            position: relative;
+            left: 41.66667%;
+            right: auto
+        }
+
+        .sm-pull5 {
+            position: relative;
+            right: 41.66667%;
+            left: auto
+        }
+
+        .sm-push6 {
+            position: relative;
+            left: 50%;
+            right: auto
+        }
+
+        .sm-pull6 {
+            position: relative;
+            right: 50%;
+            left: auto
+        }
+
+        .sm-push7 {
+            position: relative;
+            left: 58.33333%;
+            right: auto
+        }
+
+        .sm-pull7 {
+            position: relative;
+            right: 58.33333%;
+            left: auto
+        }
+
+        .sm-push8 {
+            position: relative;
+            left: 66.66667%;
+            right: auto
+        }
+
+        .sm-pull8 {
+            position: relative;
+            right: 66.66667%;
+            left: auto
+        }
+
+        .sm-push9 {
+            position: relative;
+            left: 75%;
+            right: auto
+        }
+
+        .sm-pull9 {
+            position: relative;
+            right: 75%;
+            left: auto
+        }
+
+        .sm-push10 {
+            position: relative;
+            left: 83.33333%;
+            right: auto
+        }
+
+        .sm-pull10 {
+            position: relative;
+            right: 83.33333%;
+            left: auto
+        }
+
+        .sm-push11 {
+            position: relative;
+            left: 91.66667%;
+            right: auto
+        }
+
+        .sm-pull11 {
+            position: relative;
+            right: 91.66667%;
+            left: auto
+        }
+
+        .cl,
+        .cls {
+            position: relative;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            padding-left: .9375rem;
+            padding-right: .9375rem;
+            float: left
+        }
+
+        .sm1 {
+            width: 8.33333%
+        }
+
+        .sm2 {
+            width: 16.66667%
+        }
+
+        .sm3 {
+            width: 25%
+        }
+
+        .sm4 {
+            width: 33.33333%
+        }
+
+        .sm5 {
+            width: 41.66667%
+        }
+
+        .sm6 {
+            width: 50%
+        }
+
+        .sm7 {
+            width: 58.33333%
+        }
+
+        .sm8 {
+            width: 66.66667%
+        }
+
+        .sm9 {
+            width: 75%
+        }
+
+        .sm10 {
+            width: 83.33333%
+        }
+
+        .sm11 {
+            width: 91.66667%
+        }
+
+        .sm12 {
+            width: 100%
+        }
+
+        .sm-offset0 {
+            margin-left: 0 !important
+        }
+
+        .sm-offset1 {
+            margin-left: 8.33333% !important
+        }
+
+        .sm-offset2 {
+            margin-left: 16.66667% !important
+        }
+
+        .sm-offset3 {
+            margin-left: 25% !important
+        }
+
+        .sm-offset4 {
+            margin-left: 33.33333% !important
+        }
+
+        .sm-offset5 {
+            margin-left: 41.66667% !important
+        }
+
+        .sm-offset6 {
+            margin-left: 50% !important
+        }
+
+        .sm-offset7 {
+            margin-left: 58.33333% !important
+        }
+
+        .sm-offset8 {
+            margin-left: 66.66667% !important
+        }
+
+        .sm-offset9 {
+            margin-left: 75% !important
+        }
+
+        .sm-offset10 {
+            margin-left: 83.33333% !important
+        }
+
+        .sm-offset11 {
+            margin-left: 91.66667% !important
+        }
+
+        .sm-reset-order {
+            float: left;
+            left: auto;
+            margin-left: 0;
+            margin-right: 0;
+            right: auto
+        }
+
+        .cl.sm-centered,
+        .cls.sm-centered {
+            margin-left: auto;
+            margin-right: auto;
+            float: none
+        }
+
+        .cl.sm-uncentered,
+        .cls.sm-uncentered {
+            float: left;
+            margin-left: 0;
+            margin-right: 0
+        }
+
+        .cl.sm-centered:last-child,
+        .cls.sm-centered:last-child {
+            float: none
+        }
+
+        .cl.sm-uncentered:last-child,
+        .cls.sm-uncentered:last-child {
+            float: left
+        }
+
+        .cl.sm-uncentered.opposite,
+        .cls.sm-uncentered.opposite {
+            float: right
+        }
+
+        .rw.sm-collapse>.cl,
+        .rw.sm-collapse>.cls {
+            padding-left: 0;
+            padding-right: 0
+        }
+
+        .rw.sm-collapse .rw {
+            margin-left: 0;
+            margin-right: 0
+        }
+
+        .rw.sm-uncollapse>.cl,
+        .rw.sm-uncollapse>.cls {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            padding-left: .9375rem;
+            padding-right: .9375rem;
+            float: left
+        }
+    }
+
+    @media only screen and (min-width:map-get($breakpoints, 'md')) {
+        .md-push0 {
+            position: relative;
+            left: 0;
+            right: auto
+        }
+
+        .md-pull0 {
+            position: relative;
+            right: 0;
+            left: auto
+        }
+
+        .md-push1 {
+            position: relative;
+            left: 8.33333%;
+            right: auto
+        }
+
+        .md-pull1 {
+            position: relative;
+            right: 8.33333%;
+            left: auto
+        }
+
+        .md-push2 {
+            position: relative;
+            left: 16.66667%;
+            right: auto
+        }
+
+        .md-pull2 {
+            position: relative;
+            right: 16.66667%;
+            left: auto
+        }
+
+        .md-push3 {
+            position: relative;
+            left: 25%;
+            right: auto
+        }
+
+        .md-pull3 {
+            position: relative;
+            right: 25%;
+            left: auto
+        }
+
+        .md-push4 {
+            position: relative;
+            left: 33.33333%;
+            right: auto
+        }
+
+        .md-pull4 {
+            position: relative;
+            right: 33.33333%;
+            left: auto
+        }
+
+        .md-push5 {
+            position: relative;
+            left: 41.66667%;
+            right: auto
+        }
+
+        .md-pull5 {
+            position: relative;
+            right: 41.66667%;
+            left: auto
+        }
+
+        .md-push6 {
+            position: relative;
+            left: 50%;
+            right: auto
+        }
+
+        .md-pull6 {
+            position: relative;
+            right: 50%;
+            left: auto
+        }
+
+        .md-push7 {
+            position: relative;
+            left: 58.33333%;
+            right: auto
+        }
+
+        .md-pull7 {
+            position: relative;
+            right: 58.33333%;
+            left: auto
+        }
+
+        .md-push8 {
+            position: relative;
+            left: 66.66667%;
+            right: auto
+        }
+
+        .md-pull8 {
+            position: relative;
+            right: 66.66667%;
+            left: auto
+        }
+
+        .md-push9 {
+            position: relative;
+            left: 75%;
+            right: auto
+        }
+
+        .md-pull9 {
+            position: relative;
+            right: 75%;
+            left: auto
+        }
+
+        .md-push10 {
+            position: relative;
+            left: 83.33333%;
+            right: auto
+        }
+
+        .md-pull10 {
+            position: relative;
+            right: 83.33333%;
+            left: auto
+        }
+
+        .md-push11 {
+            position: relative;
+            left: 91.66667%;
+            right: auto
+        }
+
+        .md-pull11 {
+            position: relative;
+            right: 91.66667%;
+            left: auto
+        }
+
+        .cl,
+        .cls {
+            position: relative;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            padding-left: .9375rem;
+            padding-right: .9375rem;
+            float: left
+        }
+
+        .md1 {
+            width: 8.33333%
+        }
+
+        .md2 {
+            width: 16.66667%
+        }
+
+        .md3 {
+            width: 25%
+        }
+
+        .md4 {
+            width: 33.33333%
+        }
+
+        .md5 {
+            width: 41.66667%
+        }
+
+        .md6 {
+            width: 50%
+        }
+
+        .md7 {
+            width: 58.33333%
+        }
+
+        .md8 {
+            width: 66.66667%
+        }
+
+        .md9 {
+            width: 75%
+        }
+
+        .md10 {
+            width: 83.33333%
+        }
+
+        .md11 {
+            width: 91.66667%
+        }
+
+        .md12 {
+            width: 100%
+        }
+
+        .md-offset0 {
+            margin-left: 0 !important
+        }
+
+        .md-offset1 {
+            margin-left: 8.33333% !important
+        }
+
+        .md-offset2 {
+            margin-left: 16.66667% !important
+        }
+
+        .md-offset3 {
+            margin-left: 25% !important
+        }
+
+        .md-offset4 {
+            margin-left: 33.33333% !important
+        }
+
+        .md-offset5 {
+            margin-left: 41.66667% !important
+        }
+
+        .md-offset6 {
+            margin-left: 50% !important
+        }
+
+        .md-offset7 {
+            margin-left: 58.33333% !important
+        }
+
+        .md-offset8 {
+            margin-left: 66.66667% !important
+        }
+
+        .md-offset9 {
+            margin-left: 75% !important
+        }
+
+        .md-offset10 {
+            margin-left: 83.33333% !important
+        }
+
+        .md-offset11 {
+            margin-left: 91.66667% !important
+        }
+
+        .md-reset-order {
+            float: left;
+            left: auto;
+            margin-left: 0;
+            margin-right: 0;
+            right: auto
+        }
+
+        .cl.md-centered,
+        .cls.md-centered {
+            margin-left: auto;
+            margin-right: auto;
+            float: none
+        }
+
+        .cl.md-uncentered,
+        .cls.md-uncentered {
+            float: left;
+            margin-left: 0;
+            margin-right: 0
+        }
+
+        .cl.md-centered:last-child,
+        .cls.md-centered:last-child {
+            float: none
+        }
+
+        .cl.md-uncentered:last-child,
+        .cls.md-uncentered:last-child {
+            float: left
+        }
+
+        .cl.md-uncentered.opposite,
+        .cls.md-uncentered.opposite {
+            float: right
+        }
+
+        .rw.md-collapse>.cl,
+        .rw.md-collapse>.cls {
+            padding-left: 0;
+            padding-right: 0
+        }
+
+        .rw.md-collapse .rw {
+            margin-left: 0;
+            margin-right: 0
+        }
+
+        .rw.md-uncollapse>.cl,
+        .rw.md-uncollapse>.cls {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            padding-left: .9375rem;
+            padding-right: .9375rem;
+            float: left
+        }
+
+        .push0 {
+            position: relative;
+            left: 0;
+            right: auto
+        }
+
+        .pull0 {
+            position: relative;
+            right: 0;
+            left: auto
+        }
+
+        .push1 {
+            position: relative;
+            left: 8.33333%;
+            right: auto
+        }
+
+        .pull1 {
+            position: relative;
+            right: 8.33333%;
+            left: auto
+        }
+
+        .push2 {
+            position: relative;
+            left: 16.66667%;
+            right: auto
+        }
+
+        .pull2 {
+            position: relative;
+            right: 16.66667%;
+            left: auto
+        }
+
+        .push3 {
+            position: relative;
+            left: 25%;
+            right: auto
+        }
+
+        .pull3 {
+            position: relative;
+            right: 25%;
+            left: auto
+        }
+
+        .push4 {
+            position: relative;
+            left: 33.33333%;
+            right: auto
+        }
+
+        .pull4 {
+            position: relative;
+            right: 33.33333%;
+            left: auto
+        }
+
+        .push5 {
+            position: relative;
+            left: 41.66667%;
+            right: auto
+        }
+
+        .pull5 {
+            position: relative;
+            right: 41.66667%;
+            left: auto
+        }
+
+        .push6 {
+            position: relative;
+            left: 50%;
+            right: auto
+        }
+
+        .pull6 {
+            position: relative;
+            right: 50%;
+            left: auto
+        }
+
+        .push7 {
+            position: relative;
+            left: 58.33333%;
+            right: auto
+        }
+
+        .pull7 {
+            position: relative;
+            right: 58.33333%;
+            left: auto
+        }
+
+        .push8 {
+            position: relative;
+            left: 66.66667%;
+            right: auto
+        }
+
+        .pull8 {
+            position: relative;
+            right: 66.66667%;
+            left: auto
+        }
+
+        .push9 {
+            position: relative;
+            left: 75%;
+            right: auto
+        }
+
+        .pull9 {
+            position: relative;
+            right: 75%;
+            left: auto
+        }
+
+        .push10 {
+            position: relative;
+            left: 83.33333%;
+            right: auto
+        }
+
+        .pull10 {
+            position: relative;
+            right: 83.33333%;
+            left: auto
+        }
+
+        .push11 {
+            position: relative;
+            left: 91.66667%;
+            right: auto
+        }
+
+        .pull11 {
+            position: relative;
+            right: 91.66667%;
+            left: auto
+        }
+    }
+
+    @media only screen and (min-width:map-get($breakpoints, 'lg')) {
+        .lg-push0 {
+            position: relative;
+            left: 0;
+            right: auto
+        }
+
+        .lg-pull0 {
+            position: relative;
+            right: 0;
+            left: auto
+        }
+
+        .lg-push1 {
+            position: relative;
+            left: 8.33333%;
+            right: auto
+        }
+
+        .lg-pull1 {
+            position: relative;
+            right: 8.33333%;
+            left: auto
+        }
+
+        .lg-push2 {
+            position: relative;
+            left: 16.66667%;
+            right: auto
+        }
+
+        .lg-pull2 {
+            position: relative;
+            right: 16.66667%;
+            left: auto
+        }
+
+        .lg-push3 {
+            position: relative;
+            left: 25%;
+            right: auto
+        }
+
+        .lg-pull3 {
+            position: relative;
+            right: 25%;
+            left: auto
+        }
+
+        .lg-push4 {
+            position: relative;
+            left: 33.33333%;
+            right: auto
+        }
+
+        .lg-pull4 {
+            position: relative;
+            right: 33.33333%;
+            left: auto
+        }
+
+        .lg-push5 {
+            position: relative;
+            left: 41.66667%;
+            right: auto
+        }
+
+        .lg-pull5 {
+            position: relative;
+            right: 41.66667%;
+            left: auto
+        }
+
+        .lg-push6 {
+            position: relative;
+            left: 50%;
+            right: auto
+        }
+
+        .lg-pull6 {
+            position: relative;
+            right: 50%;
+            left: auto
+        }
+
+        .lg-push7 {
+            position: relative;
+            left: 58.33333%;
+            right: auto
+        }
+
+        .lg-pull7 {
+            position: relative;
+            right: 58.33333%;
+            left: auto
+        }
+
+        .lg-push8 {
+            position: relative;
+            left: 66.66667%;
+            right: auto
+        }
+
+        .lg-pull8 {
+            position: relative;
+            right: 66.66667%;
+            left: auto
+        }
+
+        .lg-push9 {
+            position: relative;
+            left: 75%;
+            right: auto
+        }
+
+        .lg-pull9 {
+            position: relative;
+            right: 75%;
+            left: auto
+        }
+
+        .lg-push10 {
+            position: relative;
+            left: 83.33333%;
+            right: auto
+        }
+
+        .lg-pull10 {
+            position: relative;
+            right: 83.33333%;
+            left: auto
+        }
+
+        .lg-push11 {
+            position: relative;
+            left: 91.66667%;
+            right: auto
+        }
+
+        .lg-pull11 {
+            position: relative;
+            right: 91.66667%;
+            left: auto
+        }
+
+        .cl,
+        .cls {
+            position: relative;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            padding-left: .9375rem;
+            padding-right: .9375rem;
+            float: left
+        }
+
+        .lg1 {
+            width: 8.33333%
+        }
+
+        .lg2 {
+            width: 16.66667%
+        }
+
+        .lg3 {
+            width: 25%
+        }
+
+        .lg4 {
+            width: 33.33333%
+        }
+
+        .lg5 {
+            width: 41.66667%
+        }
+
+        .lg6 {
+            width: 50%
+        }
+
+        .lg7 {
+            width: 58.33333%
+        }
+
+        .lg8 {
+            width: 66.66667%
+        }
+
+        .lg9 {
+            width: 75%
+        }
+
+        .lg10 {
+            width: 83.33333%
+        }
+
+        .lg11 {
+            width: 91.66667%
+        }
+
+        .lg12 {
+            width: 100%
+        }
+
+        .lg-offset0 {
+            margin-left: 0 !important
+        }
+
+        .lg-offset1 {
+            margin-left: 8.33333% !important
+        }
+
+        .lg-offset2 {
+            margin-left: 16.66667% !important
+        }
+
+        .lg-offset3 {
+            margin-left: 25% !important
+        }
+
+        .lg-offset4 {
+            margin-left: 33.33333% !important
+        }
+
+        .lg-offset5 {
+            margin-left: 41.66667% !important
+        }
+
+        .lg-offset6 {
+            margin-left: 50% !important
+        }
+
+        .lg-offset7 {
+            margin-left: 58.33333% !important
+        }
+
+        .lg-offset8 {
+            margin-left: 66.66667% !important
+        }
+
+        .lg-offset9 {
+            margin-left: 75% !important
+        }
+
+        .lg-offset10 {
+            margin-left: 83.33333% !important
+        }
+
+        .lg-offset11 {
+            margin-left: 91.66667% !important
+        }
+
+        .lg-reset-order {
+            float: left;
+            left: auto;
+            margin-left: 0;
+            margin-right: 0;
+            right: auto
+        }
+
+        .cl.lg-centered,
+        .cls.lg-centered {
+            margin-left: auto;
+            margin-right: auto;
+            float: none
+        }
+
+        .cl.lg-uncentered,
+        .cls.lg-uncentered {
+            float: left;
+            margin-left: 0;
+            margin-right: 0
+        }
+
+        .cl.lg-centered:last-child,
+        .cls.lg-centered:last-child {
+            float: none
+        }
+
+        .cl.lg-uncentered:last-child,
+        .cls.lg-uncentered:last-child {
+            float: left
+        }
+
+        .cl.lg-uncentered.opposite,
+        .cls.lg-uncentered.opposite {
+            float: right
+        }
+
+        .rw.lg-collapse>.cl,
+        .rw.lg-collapse>.cls {
+            padding-left: 0;
+            padding-right: 0
+        }
+
+        .rw.lg-collapse .rw {
+            margin-left: 0;
+            margin-right: 0
+        }
+
+        .rw.lg-uncollapse>.cl,
+        .rw.lg-uncollapse>.cls {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            padding-left: .9375rem;
+            padding-right: .9375rem;
+            float: left
+        }
+
+        .push0 {
+            position: relative;
+            left: 0;
+            right: auto
+        }
+
+        .pull0 {
+            position: relative;
+            right: 0;
+            left: auto
+        }
+
+        .push1 {
+            position: relative;
+            left: 8.33333%;
+            right: auto
+        }
+
+        .pull1 {
+            position: relative;
+            right: 8.33333%;
+            left: auto
+        }
+
+        .push2 {
+            position: relative;
+            left: 16.66667%;
+            right: auto
+        }
+
+        .pull2 {
+            position: relative;
+            right: 16.66667%;
+            left: auto
+        }
+
+        .push3 {
+            position: relative;
+            left: 25%;
+            right: auto
+        }
+
+        .pull3 {
+            position: relative;
+            right: 25%;
+            left: auto
+        }
+
+        .push4 {
+            position: relative;
+            left: 33.33333%;
+            right: auto
+        }
+
+        .pull4 {
+            position: relative;
+            right: 33.33333%;
+            left: auto
+        }
+
+        .push5 {
+            position: relative;
+            left: 41.66667%;
+            right: auto
+        }
+
+        .pull5 {
+            position: relative;
+            right: 41.66667%;
+            left: auto
+        }
+
+        .push6 {
+            position: relative;
+            left: 50%;
+            right: auto
+        }
+
+        .pull6 {
+            position: relative;
+            right: 50%;
+            left: auto
+        }
+
+        .push7 {
+            position: relative;
+            left: 58.33333%;
+            right: auto
+        }
+
+        .pull7 {
+            position: relative;
+            right: 58.33333%;
+            left: auto
+        }
+
+        .push8 {
+            position: relative;
+            left: 66.66667%;
+            right: auto
+        }
+
+        .pull8 {
+            position: relative;
+            right: 66.66667%;
+            left: auto
+        }
+
+        .push9 {
+            position: relative;
+            left: 75%;
+            right: auto
+        }
+
+        .pull9 {
+            position: relative;
+            right: 75%;
+            left: auto
+        }
+
+        .push10 {
+            position: relative;
+            left: 83.33333%;
+            right: auto
+        }
+
+        .pull10 {
+            position: relative;
+            right: 83.33333%;
+            left: auto
+        }
+
+        .push11 {
+            position: relative;
+            left: 91.66667%;
+            right: auto
+        }
+
+        .pull11 {
+            position: relative;
+            right: 91.66667%;
+            left: auto
+        }
+    }
+
+    .rw,
+    .rw .cl,
+    .rw .cl:after,
+    .rw .cl:before,
+    .rw .cls,
+    .rw .cls:after,
+    .rw .cls:before,
+    .rw:after,
+    .rw:before {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box
+    }
+
+  /* DEPRECATED important override width utility classes */
+  @media screen and (max-width: 639px) {
+    .sm12i {width: 100% !important}
+    .sm11i {width: 100% * 11 / 12 !important}
+    .sm10i {width: 100% * 10 / 12 !important}
+    .sm9i {width: 100% * 9 / 12 !important}
+    .sm8i {width: 100% * 8 / 12 !important}
+    .sm7i {width: 100% * 7 / 12 !important}
+    .sm6i {width: 100% * 6 / 12 !important}
+    .sm5i {width: 100% * 5 / 12 !important}
+    .sm4i {width: 100% * 4 / 12 !important}
+    .sm3i {width: 100% * 3 / 12 !important}
+    .sm2i {width: 100% * 2 / 12 !important}
+    .sm1i {width: 100% * 1 / 12 !important}
+  }
+}
+
+// Grid (Beta)
+//
+// A 12 grid system using css-grid (IE11 support not fully tested, USE AT YOUR OWN RISK!).
+//
+// |||
+// |-|-|
+// | `.grid` | designates an an element as row or parent containing column elements. |
+// | `.sm[1-12]` | designates the width an element should be (mobile up). Is a percentage-based value where 12 === 100% |
+// | `.md[1-12]` | designates the width an element should be (medium defined breakpoint and up). Is a percentage-based value where 12 === 100% |
+// | `.lg[1-12]` | designates the width an element should be (large defined breakpoint and up). Is a percentage-based value where 12 === 100% |
+//
+// Markup:
+// <div class="grid mb2">
+//   <div class="sm2 md4 bg-gray p3">Mob:2/Desk:4</div>
+//   <div class="sm4 md4 bg-dark-gray p3">Mob:4/Desk:4</div>
+//   <div class="sm6 md4 bg-gray p3">Mob:6/Desk:4</div>
+// </div>
+// <div class="grid mb2">
+//   <div class="sm12 md3 bg-gray p3">Mob:12/Desk:3</div>
+//   <div class="sm12 md6 bg-dark-gray p3">Mob:12/Desk:6</div>
+//   <div class="sm12 md3 bg-gray p3">Mob:12/Desk:3</div>
+// </div>
+// <div class="grid mb2">
+//   <div class="sm6 md2 bg-gray p3">Mob:6/Desk:2</div>
+//   <div class="sm6 md8 bg-dark-gray p3">Mob:6/Desk:8</div>
+//   <div class="sm12 md2 bg-gray p3">Mob:12/Desk:2</div>
+// </div>
+// <div class="grid mb2">
+//   <div class="sm3 bg-gray p3">Mob:3/Desk:3</div>
+//   <div class="sm9 bg-dark-gray p3">Mob:9/Desk:9</div>
+// </div>
+//
+// Styleguide Layout.2
+/*----------------------- 12 Grid (css grid-based) -------------------------------------*/
+#{$parentSelector} {
+
+  @mixin grid-column($index) {
+    grid-column: span $index/span $index;
+    width: 100%;
+  }
+
+  @mixin generateGridBreakpointUtils ($totalCols, $bpSelector) {
+    @for $colIndex from 1 through $totalCols {
+      & .#{$bpSelector}#{$colIndex} {
+        @include grid-column($colIndex)
+      }
+    }
+  }
+  
+  @mixin generateGridUtils($config) {
+    // sass destructure
+    $totalCols: map-get-if-exists($config, 'totalCols', 12);
+    $gridGap: map-get-if-exists($config, 'gridGap', 0);
+    
+    .grid {
+      display: -ms-grid;
+      display: grid;
+      grid-gap: $gridGap;
+      -ms-grid-columns: (1fr)[$totalCols];
+      grid-template-columns: repeat($totalCols, 1fr);
+      box-sizing: border-box;
+      & > * {
+        box-sizing: border-box;
+      }
+      
+      @each $bpSelector, $bp in $breakpoints {
+        @if $bpSelector=='xs' {
+          // skip
+        }
+        @else if $bpSelector=='sm' {
+          @include generateGridBreakpointUtils($totalCols, $bpSelector);
+        }
+        @else {
+          @media only screen and (min-width: $bp) {
+            @include generateGridBreakpointUtils($totalCols, $bpSelector);
+          }
+        }
+      }
+    }
+  }
+  @include generateGridUtils((
+    totalcols: 12,
+    gridGap: 0
+  ));
+}

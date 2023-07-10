@@ -1,0 +1,473 @@
+// Flex
+//
+// All utility classes related to flex alignment of elements. Resize display to see stacking effect of flex elements on mobile.
+// Note we explicitly set align-items on .flex as silly Safari will use stretch otherwise. :(
+//
+// | Class Name | Description |
+// |-|-|
+// | `.flex` | Sets `display:flex;` Add to parent container whose children you would like to align with flex box. |
+// | `.flex-column` | Add to parent whose child elements you would like to display vertically as a column |
+// | `.flex-column-center` | Shorthand utility class that combines `.flex`, `.flex-column`, `.justify-center`, and `.items-center` utility classes in one |
+// | `.flex-row` | Add to parent whose child elements you would like to display horizontally as a row |
+// | `.flex-row-center` | Shorthand utility class that combines `.flex`, `.flex-row`, `.justify-center`, and `.items-center` utility classes in one |
+// | `.flex-wrap` | Add to parent whose child elements you would like to wrap to next line should their collective dimensions exceed row or column width |
+// | `.flex-nowrap` | Add to parent whose child elements you would like to NOT wrap to next line should their collective dimensions exceed row or column width and instead will shrink elements to fit on single line. |
+// | `.items-start` | Assuming default flex-direction is "row", child elements will vertically align to top of row. |
+// | `.items-end` | Assuming default flex-direction is "row", child elements will vertically align to bottom of row. |
+// | `.items-center` | Assuming default flex-direction is "row", child elements will vertically align to center of row. |
+// | `.items-baseline` | Assuming default flex-direction is "row", child elements are aligned such as their baselines align. |
+// | `.items-stretch` | Assuming default flex-direction is "row", child elements will stretch to fill the container. |
+// | `.justify-start` | Assuming default flex-direction is "row", child elements will horizontally align to left of row. |
+// | `.justify-end` | Assuming default flex-direction is "row", child elements will horizontally align to end of row. |
+// | `.justify-center` | Assuming default flex-direction is "row", child elements will horizontally align to center of row. |
+// | `.justify-between` | Assuming default flex-direction is "row", child elements will horizontally align to center of row. Any leftover space will be evenly distributed between the children excluding sides on far left or right side. |
+// | `.justify-around` | Assuming default flex-direction is "row", child elements will horizontally align to center of row. Any leftover space will be evenly distributed between the children including sides on far left or right side. |
+//
+// Markup:
+// <div class="flex flex-column md-flex-row justify-around items-center h10">
+// <span class="block p2 text-center sm8 md3 border-black">FLEX TEST 1</span>
+// <span class="block p2 text-center sm8 md3 border-black">FLEX TEST 2</span>
+// <span class="block p2 text-center sm8 md3 border-black">FLEX TEST 3</span>
+// </div>
+//
+// Styleguide Layout.4
+
+// Order
+//
+// Reorder elements at different breakpoints using .flex on parent container and these utility classes on children. Resize screen to see effect on example below.
+//
+// ||
+// |-|
+// | `.order0` |
+// | `.order1` |
+// | `.order2` |
+// | `.order3` |
+// | `.order4` |
+// | `.order5` |
+// | `.order-last` |
+//
+// Markup:
+// <div class="flex flex-column">
+// <span class="block mb2 order1 md-order3 lg-order5 blue">I am the first element in the code</span>
+// <span class="block mb2 order2 gray">I am the second element in the code</span>
+// <span class="block mb2 order4 gray">I am the third element in the code</span>
+// </div>
+//
+// Styleguide Layout.3.1
+
+/* flex is defined in display.scss to allow for breakpoint toggles with other display classes such as .hide-it and so is omitted in this module */
+// @mixin flex {
+//   display: -webkit-box;
+//   display: -webkit-flex;
+//   display: -ms-flexbox;
+//   display: flex;
+// }
+@mixin flex-column {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+@mixin flex-row {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+@mixin flex-wrap {
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+@mixin flex-nowrap {
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+
+@mixin items-start {
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  -ms-grid-row-align: flex-start;
+  align-items: flex-start;
+}
+
+@mixin items-end {
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: end;
+  -ms-grid-row-align: flex-end;
+  align-items: flex-end;
+}
+
+@mixin items-center {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  -ms-grid-row-align: center;
+  align-items: center;
+}
+
+@mixin items-baseline {
+  -webkit-box-align: baseline;
+  -webkit-align-items: baseline;
+  -ms-flex-align: baseline;
+  -ms-grid-row-align: baseline;
+  align-items: baseline;
+}
+
+@mixin items-stretch {
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  -ms-grid-row-align: stretch;
+  align-items: stretch;
+}
+
+@mixin justify-start {
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+@mixin justify-end {
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+@mixin justify-center {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+@mixin justify-between {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+@mixin justify-around {
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+
+@mixin order0 {
+  -webkit-box-ordinal-group: 1;
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+}
+
+@mixin order1 {
+  -webkit-box-ordinal-group: 2;
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 1;
+}
+
+@mixin order2 {
+  -webkit-box-ordinal-group: 3;
+  -webkit-order: 2;
+  -ms-flex-order: 2;
+  order: 2;
+}
+
+@mixin order3 {
+  -webkit-box-ordinal-group: 4;
+  -webkit-order: 3;
+  -ms-flex-order: 3;
+  order: 3;
+}
+
+@mixin order4 {
+  -webkit-box-ordinal-group: 5;
+  -webkit-order: 4;
+  -ms-flex-order: 4;
+  order: 4;
+}
+
+@mixin order5 {
+  -webkit-box-ordinal-group: 6;
+  -webkit-order: 5;
+  -ms-flex-order: 5;
+  order: 5;
+}
+
+@mixin order-last {
+  -webkit-box-ordinal-group: 100000;
+  -webkit-order: 99999;
+  -ms-flex-order: 99999;
+  order: 99999;
+}
+//variable to track first map item below
+$index: 0;
+// prepend this parent id selector to all styles generated
+#{$parentSelector} {
+  //loop through breakpoint grid
+  @each $bpSelector, $bp in $breakpoints {
+    $index: $index + 1;
+    // no media queries for first
+    @if $index == 1 {
+      .flex-column {
+        @include flex-column;
+      }
+      .flex-row {
+        @include flex-row;
+      }
+      .flex-column-center {
+        display: flex;
+        @include flex-column;
+        @include justify-center;
+        @include items-center;
+      }
+      .flex-row-center {
+        display: flex;
+        @include flex-row;
+        @include justify-center;
+        @include items-center;
+      }
+      .flex-wrap {
+        @include flex-wrap;
+      }
+      .flex-nowrap {
+        @include flex-nowrap;
+      }
+      .items-start {
+        @include items-start;
+      }
+      .items-end {
+        @include items-end;
+      }
+      .items-center {
+        @include items-center;
+      }
+      .items-baseline {
+        @include items-baseline;
+      }
+      .items-stretch {
+        @include items-stretch;
+      }
+      .justify-start {
+        @include justify-start;
+      }
+      .justify-end {
+        @include justify-end;
+      }
+      .justify-center {
+        @include justify-center;
+      }
+      .justify-between {
+        @include justify-between;
+      }
+      .justify-around {
+        @include justify-around;
+      }
+      .order0 {
+        @include order0;
+      }
+      .order1 {
+        @include order1;
+      }
+      .order2 {
+        @include order2;
+      }
+      .order3 {
+        @include order3;
+      }
+      .order4 {
+        @include order4;
+      }
+      .order5 {
+        @include order5;
+      }
+      .order-last {
+        @include order-last;
+      }
+    }
+    //media queries and breakpoint prefix for the rest
+  @else
+    {
+      @media only screen and (min-width: $bp) {
+        .#{$bpSelector}-flex-column {
+          @include flex-column;
+        }
+        .#{$bpSelector}-flex-row {
+          @include flex-row;
+        }
+        .#{$bpSelector}-flex-column-center {
+          display: flex;
+          @include flex-column;
+          @include justify-center;
+          @include items-center;
+        }
+        .#{$bpSelector}-flex-row-center {
+          display: flex;
+          @include flex-row;
+          @include justify-center;
+          @include items-center;
+        }
+        .#{$bpSelector}-flex-wrap {
+          @include flex-wrap;
+        }
+        .#{$bpSelector}-flex-nowrap {
+          @include flex-nowrap;
+        }
+        .#{$bpSelector}-items-start {
+          @include items-start;
+        }
+        .#{$bpSelector}-items-end {
+          @include items-end;
+        }
+        .#{$bpSelector}-items-center {
+          @include items-center;
+        }
+        .#{$bpSelector}-items-baseline {
+          @include items-baseline;
+        }
+        .#{$bpSelector}-items-stretch {
+          @include items-stretch;
+        }
+        .#{$bpSelector}-justify-start {
+          @include justify-start;
+        }
+        .#{$bpSelector}-justify-end {
+          @include justify-end;
+        }
+        .#{$bpSelector}-justify-center {
+          @include justify-center;
+        }
+        .#{$bpSelector}-justify-between {
+          @include justify-between;
+        }
+        .#{$bpSelector}-justify-around {
+          @include justify-around;
+        }
+        .#{$bpSelector}-order0 {
+          @include order0;
+        }
+        .#{$bpSelector}-order1 {
+          @include order1;
+        }
+        .#{$bpSelector}-order2 {
+          @include order2;
+        }
+        .#{$bpSelector}-order3 {
+          @include order3;
+        }
+        .#{$bpSelector}-order4 {
+          @include order4;
+        }
+        .#{$bpSelector}-order5 {
+          @include order5;
+        }
+        .#{$bpSelector}-order-last {
+          @include order-last;
+        }
+      }
+    }
+  }
+}
+
+
+/* Lesser used flex styles no breakpoint options for these */
+#{$parentSelector} {
+  .self-start {
+    -webkit-align-self: flex-start;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+  }
+
+  .self-end {
+    -webkit-align-self: flex-end;
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+  }
+
+  .self-center {
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+  }
+
+  .self-baseline {
+    -webkit-align-self: baseline;
+    -ms-flex-item-align: baseline;
+    align-self: baseline;
+  }
+
+  .self-stretch {
+    -webkit-align-self: stretch;
+    -ms-flex-item-align: stretch;
+    align-self: stretch;
+  }
+
+  .content-start {
+    -webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+  }
+
+  .content-end {
+    -webkit-align-content: flex-end;
+    -ms-flex-line-pack: end;
+    align-content: flex-end;
+  }
+
+  .content-center {
+    -webkit-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+  }
+
+  .content-between {
+    -webkit-align-content: space-between;
+    -ms-flex-line-pack: justify;
+    align-content: space-between;
+  }
+
+  .content-around {
+    -webkit-align-content: space-around;
+    -ms-flex-line-pack: distribute;
+    align-content: space-around;
+  }
+
+  .content-stretch {
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+  }
+
+  .auto {
+    width:auto;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 0px;
+    -ms-flex: 1 1 0px;
+    flex: 1 1 0px;
+  }
+  
+  .flex-auto {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .flex-none {
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+  }
+}

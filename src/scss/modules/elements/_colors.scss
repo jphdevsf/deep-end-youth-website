@@ -1,0 +1,74 @@
+// Colors
+//
+// Colors are utilized in the following utility classes and are defined in `$colors` map of `config.scss` for each brand:
+//
+// ||
+// |-|
+// | `.[color name]` |
+// | `.bg-[color name]` |
+// | `.border-[color name]` |
+//
+// *NOTE: To support ADA compliance the framework includes an `outline.scss` module that calculates a contrasted outline color of focusable elements (`<a>` or `<button>` elements) based on the occurence of keyboard focusable elements contained in a parent utilizing a .bg-[color] utility class.*
+//
+// Markup:
+// <span class="blue block mb2">I am a span element using the <span class="fw700">.blue</span> utility class</span>
+// <span class="bg-gray block mb2">I am a span element using the <span class="fw700">.bg-gray</span> utility class</span>
+// <span class="border-black block mb2">I am a span element using the <span class="fw700">.border-black</span> utility class</span>
+// <div class='bg-white mb1 mt3'>
+//   <p>Here are two identical buttons nested in different parent containers with different bg-[color] utility classes used. Inspect the buttons and force state to ":focus-visible" to observe how the focus outline color varies based on parent's use of .bg-[color]:</p>
+// </div>
+// <div class="flex flex-row">
+//   <div class='bg-light-gray p2 sm6'>
+//     <a href="http://www.google.com" class="cta-box-black block p1">SHOP NOW</a>
+//     (parent using .bg-light-gray)
+//   </div>
+//   <div class='bg-dark-gray p2 sm6'>
+//     <a href="http://www.google.com" class="cta-box-black block p1">SHOP NOW</a>
+//     (parent using .bg-dark-gray)
+//   </div>
+// </div>
+//
+// Styleguide Elements.Colors
+
+
+
+
+$config: (
+  property: 'color',
+  propValues: $colors,
+);
+@include buildClasses($config);
+ 
+$config: (
+  property: 'color',
+  propValues: $colors,
+  suffix: ':focus'
+);
+@include buildClasses($config);
+
+
+$config: (
+  property: 'background-color',
+  propValues: $colors,
+  prefix: 'bg'
+);
+@include buildClasses($config);
+
+$config: (
+  property: 'background-color',
+  propValues: $colors,
+  prefix: 'bg',
+  suffix: ':focus'
+);
+@include buildClasses($config);
+
+$config: (
+  property: 'border-color',
+  propValues: $colors,
+  prefix: 'border',
+  appendRules: (
+    border-style: solid,
+    border-width: 1px
+  )
+);
+@include buildClasses($config);

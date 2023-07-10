@@ -1,0 +1,20 @@
+// Text alignment
+//
+// ||
+// |-|
+// | `.text-left` |
+// | `.text-center` |
+// | `.text-right` |
+//
+// Markup:
+// <span class="text16 border-gray p2 m1 sm12 block text-left">Hello World!</span>
+// <span class="text16 border-gray p2 m1 sm12 block text-center">Hello World!</span>
+// <span class="text16 border-gray p2 m1 sm12 block text-right">Hello World!</span>
+//
+// Styleguide Typography.5
+$config: (
+  property: 'text-align',
+  name: 'text',
+  propValues: left center right,
+);
+@include buildClasses($config);

@@ -1,0 +1,77 @@
+$_config: (
+  property: 'padding',
+  name: 'p',
+  propValues: join(auto, buildNumSequence($min:-25, $max:25, $inc:1)),
+  unit: '%'
+);
+@include buildClasses($_config);
+
+$_config: (
+  property: 'padding-top',
+  name: 'pt',
+  propValues: join(auto, buildNumSequence($min:-25, $max:25, $inc:1)),
+  unit: '%'
+);
+@include buildClasses($_config);
+
+$_config: (
+  property: 'padding-right',
+  name: 'pr',
+  propValues: join(auto, buildNumSequence($min:-25, $max:25, $inc:1)),
+  unit: '%'
+);
+@include buildClasses($_config);
+
+$_config: (
+  property: 'padding-bottom',
+  name: 'pb',
+  propValues: join(auto, buildNumSequence($min:-25, $max:25, $inc:1)),
+  unit: '%'
+);
+@include buildClasses($_config);
+
+$_config: (
+  property: 'padding-left',
+  name: 'pl',
+  propValues: join(auto, buildNumSequence($min:-25, $max:25, $inc:1)),
+  unit: '%'
+);
+@include buildClasses($_config);
+
+$_config: (
+  propValues: auto inherit,
+  rename: (
+    auto: 'px-auto',
+    inherit: 'px-inherit'
+  ),
+  appendRules: (
+    auto: (
+      padding-left: auto,
+      padding-right: auto
+    ),
+    inherit: (
+      padding-left: inherit,
+      padding-right: inherit
+    )
+  )
+);
+@include buildClasses($_config);
+
+$_config: (
+  propValues: auto inherit,
+  rename: (
+    auto: 'py-auto',
+    inherit: 'py-inherit'
+  ),
+  appendRules: (
+    auto: (
+      padding-top: auto,
+      padding-bottom: auto
+    ),
+    inherit: (
+      padding-top: inherit,
+      padding-bottom: inherit
+    )
+  )
+);
+@include buildClasses($_config);

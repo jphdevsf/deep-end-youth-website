@@ -1,0 +1,51 @@
+/// called by buildOutlineDeclarations() each time it iterates over a color in the $colors map. Native scss invert() alone does not return a ADA contrast compliant color value so this function will: 1) convert the inverted color to rgb using sass native red(), green(), and blue() methods (https://sass-lang.com/documentation/modules/color). 2) average these 3 values to determine gray value between 0-255. Then runs some 'cheap' math to push the value closer to rgb white (255) or rgb black (0) depending whether it's initally above mid point of 127. 
+/// @param {string|hex|rgb|rgba} $color - A single color value from the $colors map defined in globals/_config.scss.
+/// @returns inverted and high-contrast grayscale color as an rgb value.
+@function determineOutlineColor ($color) {
+  $invert: invert($color);
+  $r: red($invert);
+  $g: green($invert);
+  $b: blue($invert);
+  $gray: ($r + $g + $b) / 3;
+  @if ($gray < 127) { $gray: round($gray * 0.5) }
+  @if ($gray > 127) { $gray: round($gray * 1.5) }
+  @if ($gray > 255) { $gray: 255 }
+  @if ($gray < 0) { $gray: 0 }
+  @return rgb($gray, $gray, $gray);
+}
+
+/// Mixin that returns a css declaration block targeting elements that are focused with keyboard navigation contained with in a parent element using the .bg-#{color} utility classes.
+/// @param {map} $colors - Map of colors (as key value pairs) to append to css declaration block. This map is defined in globals/_config.scss.
+@mixin buildOutlineDeclarations ($colors) {
+  @if ($colors == null) { @debug '\A\A ERROR: $colors is missing from _config.scss \A\A'; }
+  /* ---- focus outlines based on background-color utility classes ---- */
+  #{$parentSelector} {
+    *:focus-visible {
+      outline: solid 1px #333333;
+      outline-offset: 1px;
+    }
+    $index: 0;
+    @each $bpSelector, $bp in $breakpoints {
+      @if $index==0 {
+        @each $key, $val in $colors {
+          .bg-#{$key} *:focus-visible {
+            outline: solid 1px determineOutlineColor($val);
+          }
+        }
+      }
+      @else {
+        @media only screen and (min-width: $bp) {
+          @each $key, $val in $colors {
+            .#{$bpSelector}-bg-#{$key} *:focus-visible {
+              outline: unquote('solid 1px #{determineOutlineColor($val)}');
+            }
+          }
+        }
+      }
+      $index: $index + 1;
+    }
+  }
+  /* ---- END focus outlines based on background-color utility classes ---- */
+}
+
+@include buildOutlineDeclarations($colors)

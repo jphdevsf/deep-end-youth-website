@@ -1,0 +1,130 @@
+// Spacing
+// 
+// Layout utility classes related to spacing
+//
+// Styleguide Layout.5
+
+// Margins
+//
+// Set the css margin spacing for an element.
+//
+// ||
+// |-|
+// | `.m[-25 to 25]` (percentage-based units) |
+// | `.mt[-25 to 25]` (percentage-based units) |
+// | `.mr[-25 to 25]` (percentage-based units) |
+// | `.mb[-25 to 25]` (percentage-based units) |
+// | `.ml[-25 to 25]` (percentage-based units) |
+// | `.mx-auto` |
+// | `.mx-inherit` |
+// | `.my-auto` |
+// | `.my-inherit` |
+//
+// Markup:
+// <div class="sm12 h15 flex">
+// <span class="inline-block border-gray p1 m1 sm3 h5">MARGIN TEST 1</span>
+// <span class="inline-block border-gray p1 mt3 ml3 sm3 h5">MARGIN TEST 2</span>
+// <span class="inline-block border-gray p1 mt2 ml1 sm3 h5">MARGIN TEST 3</span>
+// </div>
+//
+// Styleguide Layout.5.1
+
+// Padding
+//
+// Set the css padding spacing for an element.
+//
+// ||
+// |-|
+// | `.p[-25 to 25]` (percentage-based units) |
+// | `.pt[-25 to 25]` (percentage-based units) |
+// | `.pr[-25 to 25]` (percentage-based units) |
+// | `.pb[-25 to 25]` (percentage-based units) |
+// | `.pl[-25 to 25]` (percentage-based units) |
+// | `.px-auto` |
+// | `.px-inherit` |
+// | `.py-auto` |
+// | `.py-inherit` |
+//
+// Markup:
+// <span class="inline-block border-gray black p1 p1 sm3">PADDING TEST 1</span>
+// <span class="inline-block border-gray black p1 pt3 pl3 sm3 ml1">PADDING TEST 2</span>
+//
+// Styleguide Layout.5.2
+
+$_config: (
+  property: 'margin',
+  name: 'm',
+  propValues: join(auto, buildNumSequence($min:-25, $max:25, $inc:1)),
+  unit: '%'
+);
+@include buildClasses($_config);
+
+$_config: (
+  property: 'margin-top',
+  name: 'mt',
+  propValues: join(auto, buildNumSequence($min:-25, $max:25, $inc:1)),
+  unit: '%'
+);
+@include buildClasses($_config);
+
+$_config: (
+  property: 'margin-right',
+  name: 'mr',
+  propValues: join(auto, buildNumSequence($min:-25, $max:25, $inc:1)),
+  unit: '%'
+);
+@include buildClasses($_config);
+
+$_config: (
+  property: 'margin-bottom',
+  name: 'mb',
+  propValues: join(auto, buildNumSequence($min:-25, $max:25, $inc:1)),
+  unit: '%'
+);
+@include buildClasses($_config);
+
+$_config: (
+  property: 'margin-left',
+  name: 'ml',
+  propValues: join(auto, buildNumSequence($min:-25, $max:25, $inc:1)),
+  unit: '%'
+);
+@include buildClasses($_config);
+
+$_config: (
+  propValues: auto inherit,
+  rename: (
+    auto: 'mx-auto',
+    inherit: 'mx-inherit'
+  ),
+  appendRules: (
+    auto: (
+      margin-left: auto,
+      margin-right: auto
+    ),
+    inherit: (
+      margin-left: inherit,
+      margin-right: inherit
+    )
+  )
+);
+@include buildClasses($_config);
+
+$_config: (
+  propValues: auto inherit,
+  rename: (
+    auto: 'my-auto',
+    inherit: 'my-inherit'
+  ),
+  appendRules: (
+    auto: (
+      margin-top: auto,
+      margin-bottom: auto
+    ),
+    inherit: (
+      margin-top: inherit,
+      margin-bottom: inherit
+    )
+  )
+);
+@include buildClasses($_config);

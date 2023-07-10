@@ -1,0 +1,22 @@
+// Text Sizing
+//
+// .text[8-120] (em-based unit)
+//
+// Markup:
+// <span class="text8 p1 mb2 sm5 block">Hello World!</span>
+// <span class="text16 p1 mb2 sm5 block">Hello World!</span>
+// <span class="text40 p1 mb2 sm5 block">Hello World!</span>
+//
+// Styleguide Typography.1
+
+$config: (
+  property: 'font-size',
+  name: 'text',
+  propValues: join(auto inherit initial, buildNumSequence($min:8, $max:120, $inc:1)),
+  unit: 'em',
+  multiplier: 1 / map-get($font-resize-config, baseFontSize),
+  appendRules: (
+    line-height: 1.1em
+  )
+);
+@include buildClasses($config);

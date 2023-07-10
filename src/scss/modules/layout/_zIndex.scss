@@ -1,0 +1,21 @@
+// Z-index
+//
+// ||
+// |-|
+// | `.z[100-1000]` incrementing by 100 |
+//
+// Markup:
+// <div class="sm11 h10 mx-auto">
+// <span class="sm2 abs top left block h5 bg-gray z100 p1">z200 TEST</span>
+// <span class="sm2 abs t10 l10 block h4 bg-dark-gray z300 p1">z300 TEST</span>
+// <span class="sm2 abs bottom l1 block h4 bg-light-gray z200 p1">z100 TEST</span>
+// </div>
+//
+// Styleguide Layout.8
+
+$_config: (
+  property: 'z-index',
+  name: 'z',
+  propValues: buildNumSequence($min:0, $max:1000, $inc:100)
+);
+@include buildClasses($_config);

@@ -1,35 +1,77 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Package Folders #
+/bower_components/
+node_modules/
+/dist/
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# Compiled source #
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
 
-# testing
-/coverage
+# Packages #
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
 
-# next.js
-/.next/
-/out/
+# Logs and databases #
+*.log
+*.sql
+*.sqlite
 
-# production
-/build
-
-# misc
+# OS generated files #
 .DS_Store
-*.pem
+.DS_Store?
+.DocumentRevisions-V100
+.fseventsd
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.DocumentRevisions-V100
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Image Files #
+*.gif
+*.png
+*.jpg
+*.psd
+*.pdf
+*.ai
+*.svg
 
-# local env files
-.env*.local
+# Office Files #
+~*
+*.xls
+*.xlsx
+*.docx
+*.doc
+*.ppt
+*.pptx
 
-# vercel
-.vercel
+validation-report.json
+validation-status.json
+.sass-cache
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# Exceptions #
+.tern-project
+!/site/MW/build-system/master/**/assets/*.jpg
+!/site/MW/build-system/master/**/assets/*.png
+!/site/MW/build-system/master/**/assets/*.svg
+!misc/exploration/excel-vba/**/*
+!misc/exploration/excel-vba/**/*
+misc/exploration/excel-vba/~*
+# VS Code
+.vscode
+*.code-workspace

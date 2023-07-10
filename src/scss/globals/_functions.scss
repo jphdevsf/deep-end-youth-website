@@ -1,0 +1,108 @@
+////
+/// @group Utils
+////
+
+/// Function to fetch nested values in a multi-level sass map. Similar to native map-get() sass function but supports space delimited list of keys as second parameter to go down multiple nested level.
+/// @param {map} $map - variable name of map.
+/// @param {list} $keys - space delimited list of nested maps. The value of the last key in this list will be returned.
+/// @example
+/// /* consider a nested map such as: */
+/// $buttons: (
+///   'white': (
+///     textColor: #000000,
+///     bgColor: #ffffff,
+///   ),
+///   ...
+/// )
+///  /* returns value of bgColor or #ffffff */
+///   mapFetch($buttons, white bgColor)
+@function mapFetch($map, $keys...) {
+  $value: $map;
+  @each $key in $keys {
+    $value: map-get($value, $key);
+  }
+  @return $value;
+}
+
+/// A helper function that returns a list of numbers. Utilized in many $_config maps to generate number based css values (margins, padding ,etc.)
+/// @param {number} $min - The first number value to include in the list.
+/// @param {number} $max - The last number value to include in the list.
+/// @param {number} $inc - The value to increment by on each iteration.
+@function buildNumSequence($min, $max, $inc) {
+  $list: ();
+  $index: $min;
+  @while $index <=$max {
+    $list: append($list, $index);
+    $index: $index + $inc;
+  }
+  @return $list;
+}
+
+/// A helper function called by buildSelector() that determines whether a hyphen should occur.
+/// @param {string|number} $suffix - If is empty string or a number, return no hyphen, otherwise return hyphen.
+@function determineHyphen($suffix) {
+  @if($suffix == '') { @return ''; }
+  @if( type-of($suffix) == 'number') { @return ''; }
+  @return '-';
+}
+
+/// Function called from buildClasses mixin that returns a string to serve as css class selector.
+/// @param {string} $value - css property value iteration is currently on to possibly utilize in selector string.
+/// @param {string} $config.$name - String for utility class name (will be prefixed by breakpoint name and suffixed by $propValues list item). Defaults to $property. 
+/// @param {bool} $config.valIsSel - flag that if set to true, uses value stored in $propValues as utility class name.
+/// @param {map} $config.rename - optional map serving as a lookup table allowing you to deviate from programmaticly created class name (key) to string of you choice (value).
+/// @param {string} $key - css property name iteration is currently on to utilize.
+@function buildSelector($value, $config, $key: null) {
+  // destructure and variable setup
+  $prefix: map-get($config, 'prefix');
+  $suffix: map-get($config, 'suffix');
+  $property: map-get($config, 'property');
+  $propValues: map-get-if-exists($config, propValues);
+  $name: map-get-if-exists($config, name);
+  $rename: map-get-if-exists($config, rename, ());
+  // build selector
+  $selector: '';
+  @if ($prefix) { $selector: $prefix + determineHyphen($key); }
+  @if ($key) { $selector: $selector + $key; }
+  @else {
+    @if (map-get($config, valIsSel)) { $selector: $value }
+    @else if ($name) { $selector: $name + determineHyphen($value) + $value; }
+    @else if ($property == null ) { $selector: $value; }
+    @else { $selector: $property + determineHyphen($value) + $value; }
+    // Check for rename, return if found.
+    @if(map-get($rename, $selector)) { @return map-get($rename, $selector); }
+    // or return the finalized selector.
+  }
+  @if ($suffix) { $selector: $selector + $suffix; }
+  @return $selector;
+}
+
+/// A helper function called by buildDeclarations() that formats a css value and concatenates a css unit if present.
+/// @param {string|number} $value - string values are left untouched. In the case of a number value, check for existence of $unit and concatenate if found.
+/// @param {string} $config.$unit - string for css unit ('em','px','%', etc.).
+/// @param {number} $config.$multiplier - Fractional number to 
+@function determineUnit($value, $config) {
+  $unit: map-get-if-exists($config, unit);
+  $multiplier: map-get-if-exists($config, multiplier, 1);
+  @if (type-of($value) == 'string') { @return $value };
+  @if ($unit) { @return ($value * $multiplier) + unquote($unit) };
+  @if (type-of($value) != 'number') { @return $value }
+  @return $value * $multiplier;
+}
+
+/// A helper function called by buildDeclarations() that returns prepended parent selector depending on configured specificity.
+/// @param {string} $specificity - Increases specificity if 'medium' or 'high' are passed by prepending html and body tags.
+@function determineParentSelector($specificity) {
+  @if ($specificity == 'high') { @return html body #{$parentSelector}; }
+  @if ($specificity == 'medium') { @return body #{$parentSelector}; }
+  @return #{$parentSelector};
+}
+
+/// A helper function similar to native sass map-get() in that it returns a value for specified key in the map. It differs in that you can specify the value to return should the key not exist in the map.
+/// @param {map} $map - Map used to lookup a key.
+/// @param {string} $key - Key that may or may not exist in the map.
+/// @param {string} $falsy - optional value to return if key is not found in the map. Returns null if no argument passed.
+@function map-get-if-exists($map, $key, $falsy: null) {
+  $x: if(map-get($map, $key), map-get($map, $key), $falsy);
+  @return $x;
+}
