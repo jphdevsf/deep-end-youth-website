@@ -225,7 +225,7 @@ const lyrics = [
     they keep ghosting mine 
  
     without a pendulum 
-    is there a motion At all? 
+    is there a motion at all? 
     i don't 
     really know 
     i was just 
@@ -294,11 +294,15 @@ const lyrics = [
 // const randomizeBackgroundImage
 
 const addRandomLyrics = () => {
-  const el = document.querySelector('.outro > p')
+  const el = document.querySelector('.outro > p .copy')
   if (!el) return
+  const titleEl = document.querySelector('.outro > p .title')
   const randomIndex = Math.floor(Math.random() * lyrics.length)
-  const str = lyrics[randomIndex].copy
-  el.innerHTML = str.replace(/\\n/g, '<br>')
+  const { copy, title } = lyrics[randomIndex]
+  el.innerHTML = copy
+  console.log(titleEl)
+  if (!titleEl) return
+  titleEl.innerHTML = `${title} // `
 }
 
 const setCopyrightYear = () => {
