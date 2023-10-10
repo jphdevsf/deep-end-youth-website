@@ -40,7 +40,29 @@ body, html {
   background-position: center;
   background-repeat: repeat;
   background-size: cover;
-} 
+  -webkit-animation: changeColor 15s infinite;
+  -moz-animation:    changeColor 15s infinite;
+  -o-animation:      changeColor 15s infinite;
+  animation:         changeColor 15s infinite;
+}
+
+@-webkit-keyframes changeColor {
+  0%   { -webkit-filter: hue-rotate(0deg) saturate(400%) blur(50px); }
+  100% { -webkit-filter: hue-rotate(360deg) saturate(400%) blur(50px); }
+}
+@-moz-keyframes changeColor {
+  0%   { -moz-filter: hue-rotate(0deg) saturate(400%) blur(50px); }
+  100% { -moz-filter: hue-rotate(360deg) saturate(400%) blur(50px); }
+}
+@-o-keyframes changeColor {
+  0%   { -o-filter: hue-rotate(0deg) saturate(400%) blur(50px); }
+  100% { -o-filter: hue-rotate(360deg) saturate(400%) blur(50px); }
+}
+@keyframes changeColor {
+  0%   { filter: hue-rotate(0deg) saturate(400%) blur(50px); }
+  100% { filter: hue-rotate(360deg) saturate(400%) blur(50px); }
+}
+
 .card {
   font-size: 1em;
   border-radius: 1em;
