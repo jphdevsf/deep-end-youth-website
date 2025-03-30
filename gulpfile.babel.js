@@ -9,7 +9,7 @@ const babel = require('gulp-babel')
 const compileCss = () => {
   return src('./src/scss/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(dest('./public/css'))
+    .pipe(dest('./docs/css'))
 }
 
 const compileJs = () => {
@@ -19,22 +19,22 @@ const compileJs = () => {
         presets: ['@babel/preset-env'],
       })
     )
-    .pipe(dest('./public/js'))
+    .pipe(dest('./docs/js'))
 }
 
 const uncss = () => {
-  return src('./public/css/**/*.css')
+  return src('./docs/css/**/*.css')
     .pipe(
       purgecss({
-        content: ['./public/*.html'],
+        content: ['./docs/*.html'],
       })
     )
-    .pipe(dest('./public/css'))
+    .pipe(dest('./docs/css'))
 }
 
 const compileHtml = (done) => {
   const inputFilePath = './src/index.pug'
-  const outputFilePath = './public/index.html'
+  const outputFilePath = './docs/index.html'
   const compiledHtml = pug.renderFile(inputFilePath, { pretty: true })
   const outputDir = path.dirname(outputFilePath)
   if (!fs.existsSync(outputDir)) {
