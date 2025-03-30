@@ -43,13 +43,13 @@ Thumbs.db
 .DocumentRevisions-V100
 
 # Image Files #
-*.gif
-*.png
-*.jpg
-*.psd
-*.pdf
-*.ai
-*.svg
+# *.gif
+# *.png
+# *.jpg
+# *.psd
+# *.pdf
+# *.ai
+# *.svg
 
 # Office Files #
 ~*
