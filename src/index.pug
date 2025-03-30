@@ -1,38 +1,4 @@
-doctype html
-head
-  // Google tag (gtag.js)
-  script(async='', src='https://www.googletagmanager.com/gtag/js?id=G-M64J806B21')
-  script.
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-M64J806B21');
-  // END Google tag (gtag.js)
-  // Google Tag Manager
-  script.
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NLDQLQM');
-  // END Google Tag Manager
-
-  meta(charset='UTF-8')
-  meta(name='viewport', content='width=device-width, initial-scale=1.0')
-  meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
-  meta(name='description', content='Official website for indie post-punk synth po artist Deep End Youth')
-  link(href='https://www.deependyouth.com', rel='canonical')
-  title Deep End Youth Offical Artist Page
-  link(rel='stylesheet', href='./css/styles.css')
-  script(src='./js/app.prod.js')
-  link(rel='apple-touch-icon', sizes='180x180', href='/apple-touch-icon.png')
-  link(rel='icon', type='image/png', sizes='32x32', href='/favicon-32x32.png')
-  link(rel='icon', type='image/png', sizes='16x16', href='/favicon-16x16.png')
-  //- link(rel='manifest', href='/site.webmanifest')
-  link(rel='preconnect', href='https://fonts.googleapis.com')
-  link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin='')
-  link(href='https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;1,300&display=swap', rel='stylesheet')
-
+include ./pug/head.pug
 body
   // Google Tag Manager (noscript)
   noscript
@@ -146,13 +112,4 @@ body
     span.title 
     span.copy
       | swim before you sink the bottom her deepest blue float don't overthink for all she knows, will weigh you down  leave 'em all behind you butterfly in the deep end give in to the moment before it's through  rising to the skyline panorama endless gentle understanding of caring less  ages we flow through aren't candles to right now so much light we see don't douse me with your salty eyes  leaving us behind you butterfly in the deep end you only have a moment and then it's through  rising to the skyline panorama endless gentle understanding of caring less  parallax always from different places separate ways towards the same thing dirty globe we burned it down together journey on towards the same dream  leaving her behind me blow up dolls in the deep end if we had a moment then now it's through  rising to the skyline panorama shameless gentle reminder to care much less  refracting each other outwardly escaping refracting making colors i just want the same thing
-  footer.bg-black-trans
-    .block.h6.md-h4.text-center.white.text12.flex.flex-row.justify-center.items-center
-      span
-        | &copy; 
-        span#footer-copyright 2023
-        | 
-        | Deep End Youth 
-      span.text18 &nbsp;&nbsp;&nbsp;
-      a.social.ml1(href="https://www.facebook.com/profile.php?id=100094076713054")
-        img.inline(src="./images/facebook.svg")
+  include ./pug/footer.pug
