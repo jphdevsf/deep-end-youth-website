@@ -9,8 +9,8 @@ body .blue {
 body .black {
   color: #232323;
 }
-body .white-trans {
-  color: rgba(255, 255, 255, 0.75);
+body .dark-black {
+  color: #333333;
 }
 
 /* ---- END color utility classes ---- */
@@ -24,8 +24,8 @@ body .blue:focus {
 body .black:focus {
   color: #232323;
 }
-body .white-trans:focus {
-  color: rgba(255, 255, 255, 0.75);
+body .dark-black:focus {
+  color: #333333;
 }
 
 /* ---- END color utility classes ---- */
