@@ -12,7 +12,7 @@
     "@babel/core": "^7.16.12",
     "@babel/preset-env": "^7.16.11",
     "@babel/register": "^7.16.9",
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.1",
     "gulp-purgecss": "^5.0.0",
     "vinyl-sourcemaps-apply": "^0.2.1"
   },
