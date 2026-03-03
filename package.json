@@ -4,6 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -12,8 +16,14 @@
     "@babel/core": "^7.16.12",
     "@babel/preset-env": "^7.16.11",
     "@babel/register": "^7.16.9",
+    "@types/node": "^25.3.3",
+    "@types/react": "^19.2.14",
     "gulp": "^5.0.1",
     "gulp-purgecss": "^5.0.0",
+    "next": "^15.5.12",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "typescript": "^5.9.3",
     "vinyl-sourcemaps-apply": "^0.2.1"
   },
   "babel": {
@@ -23,12 +33,15 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",
+    "autoprefixer": "^10.4.27",
     "eslint": "^9.39.2",
     "globals": "^16.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-pug": "^5.0.0",
     "gulp-sass": "^6.0.1",
+    "postcss": "^8.5.8",
     "pug": "^3.0.3",
-    "sass": "^1.86.0"
+    "sass": "^1.86.0",
+    "tailwindcss": "^3.4.19"
   }
 }
