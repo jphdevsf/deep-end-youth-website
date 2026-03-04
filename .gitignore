@@ -1,7 +1,16 @@
 # Package Folders #
 /bower_components/
 node_modules/
-/dist/
+
+# Next.js
+.next/
+out/
+.vercel/
+
+# Gulp (old build system)
+gulpfile.babel.js
+src/
+docs/
 
 # Compiled source #
 *.com
@@ -72,6 +81,8 @@ validation-status.json
 !misc/exploration/excel-vba/**/*
 !misc/exploration/excel-vba/**/*
 misc/exploration/excel-vba/~*
+
 # VS Code
 .vscode
 *.code-workspace
+
