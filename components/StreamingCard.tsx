@@ -18,9 +18,11 @@ export default function StreamingCard({ service }: StreamingCardProps) {
       <span className="card-icon block w-12">
         <img src={service.icon} alt={service.text} className="block mx-auto" />
       </span>
-      <span className="card-text relative block w-36 uppercase text-sm font-medium">
-        {service.text}
-        <span className="card-arrow absolute top-0.5 right-6 w-5 h-5 transition-all" />
+      <span className="card-text relative w-40 mr-2 flex justify-end items-center uppercase text-sm font-medium">
+        <span className="block mt-1">
+          {service.text}
+          </span>
+        <span className="relative card-arrow w-5 h-5 transition-all" />
       </span>
     </a>
   )

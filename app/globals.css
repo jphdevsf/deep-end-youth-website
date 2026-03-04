@@ -102,19 +102,25 @@ body {
 }
 
 /* Card styles */
+.card-arrow {
+  display: flex;
+  align-items: center; /* Centers the icon vertically */
+  justify-content: center;
+}
 .card-arrow::before {
   content: '';
-  position: absolute;
+  /* position: absolute; */
   width: 12px;
   height: 12px;
+  /* top:4px; */
   border-left: solid 2px #000000;
   border-top: solid 2px #000000;
   transform: rotate(135deg);
 }
 
-.card:hover .card-arrow {
+/* .card:hover .card-arrow {
   right: 1rem;
-}
+} */
 
 .card:hover {
   background-color: var(--hover-color) !important;
