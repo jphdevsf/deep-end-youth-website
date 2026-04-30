@@ -1,1 +1,1 @@
-self.__NEXT_FONT_MANIFEST='{"pages":{},"app":{"/Users/jacob/Documents/GitHub/deep-end-youth-website/app/layout":["static/media/f6d9d08affe49b51-s.p.woff2","static/media/accc82dc8525882b-s.p.woff2"]},"appUsingSizeAdjust":true,"pagesUsingSizeAdjust":false}';
+self.__NEXT_FONT_MANIFEST='{"pages":{},"app":{"/Users/jacob/Documents/GitHub/deep-end-youth-website/app/layout":["static/media/accc82dc8525882b-s.p.woff2","static/media/f6d9d08affe49b51-s.p.woff2"]},"appUsingSizeAdjust":true,"pagesUsingSizeAdjust":false}';

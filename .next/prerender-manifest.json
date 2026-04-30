@@ -1,30 +1,6 @@
 {
   "version": 4,
   "routes": {
-    "/": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "next-action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/",
-      "dataRoute": "/index.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
     "/_not-found": {
       "initialStatus": 404,
       "experimentalBypassFor": [
@@ -49,13 +25,37 @@
         "x-next-revalidated-tags",
         "x-next-revalidate-tag-token"
       ]
+    },
+    "/": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/",
+      "dataRoute": "/index.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
     }
   },
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "0ae0478422ff619aec596cc88de862a8",
-    "previewModeSigningKey": "a8f4533913e107d778548da98d595926f23660921d716ab11d2d6f44de11d5f3",
-    "previewModeEncryptionKey": "2ae5dbef9c5a97c99ffe36b24162803c6580bef59befb8f8bc99d15fc640b9c2"
+    "previewModeId": "588e4a0a6b2cfc8502814d217625d003",
+    "previewModeSigningKey": "e9abb18a5e59c0fb04d1559da9f26a6d772248e2f8edb50f28df87cd7befd150",
+    "previewModeEncryptionKey": "005798cfe45488e20cbe097c3ffbf76c94a660cff69d3f8cbd3a4d9d6d944f85"
   }
 }
